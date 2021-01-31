@@ -2,22 +2,24 @@
 
 #include <iostream>
 
+#include "Exception.h"
+
 namespace RenderLibrary
 {
-	Window::Window(HINSTANCE instance) : Window(instance, L"New Window")
+	Window::Window(HINSTANCE instance, int showWindow) : Window(instance, showWindow, L"New Window")
 	{
 	}
 
-	Window::Window(HINSTANCE instance, const std::wstring& title)
+	Window::Window(HINSTANCE instance, int showWindow, const std::wstring& title)
 	{
-		Create(instance, title);
+		Create(instance, showWindow, title);
 	}
 
 	Window::~Window()
 	{
 	}
 
-	void Window::Create(HINSTANCE instance, const std::wstring& title)
+	void Window::Create(HINSTANCE instance, int showWindow, const std::wstring& title)
 	{
 		const wchar_t className [] = L"Render Window Class";
 
@@ -27,11 +29,26 @@ namespace RenderLibrary
 		windowClass.hInstance = instance;
 		windowClass.lpszClassName = className;
 
+		RegisterClass(&windowClass);
+
 		_windowHandle = CreateWindowEx(0, className, title.c_str(), WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, 1280, 720, NULL, NULL, instance, NULL);
 
 		if (_windowHandle == NULL)
 		{
-			throw std::exception("Failed to create window");
+			throw Exception(L"Failed to create window");
+		}
+
+		ShowWindow(_windowHandle, showWindow);
+	}
+
+	void Window::Update()
+	{
+		MSG message {};
+
+		while (GetMessage(&message, _windowHandle, 0, 0))
+		{
+			TranslateMessage(&message);
+			DispatchMessage(&message);
 		}
 	}
 

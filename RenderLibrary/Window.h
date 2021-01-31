@@ -1,7 +1,6 @@
 #pragma once
 
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
+#include <windows.h>
 
 #include <string>
 
@@ -12,13 +11,15 @@ namespace RenderLibrary
 		HWND _windowHandle;
 
 	public:
-		Window(HINSTANCE instance);
-		Window(HINSTANCE instance, const std::wstring& title);
+		Window(HINSTANCE instance, int showWindow);
+		Window(HINSTANCE instance, int showWindow, const std::wstring& title);
 
 		~Window();
 
+		void Update();
+
 	private:
-		void Create(HINSTANCE instance, const std::wstring& title);
+		void Create(HINSTANCE instance, int showWindow, const std::wstring& title);
 
 	private:
 		static LRESULT CALLBACK WindowProcedure(HWND windowHandle, UINT message, WPARAM wParameters, LPARAM lParameters);
