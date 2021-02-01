@@ -1,28 +1,34 @@
 #pragma once
 
-#include <windows.h>
+#include "WindowCreator.h"
+#include "WindowUpdater.h"
 
 #include <string>
 
 namespace RenderLibrary
 {
-	class Window
+	namespace Window
 	{
-		HWND _windowHandle;
+		class Window
+		{
+			HWND _windowHandle;
 
-	public:
-		Window(HINSTANCE instance, int showWindow);
-		Window(HINSTANCE instance, int showWindow, const std::wstring& title);
+			WindowCreator _windowCreator;
+			WindowUpdater _windowUpdater;
 
-		~Window();
+		public:
+			Window(HINSTANCE instance, int showWindow);
+			Window(HINSTANCE instance, int showWindow, const std::wstring& windowTitle);
 
-		void Update();
+			~Window();
 
-	private:
-		void Create(HINSTANCE instance, int showWindow, const std::wstring& title);
+			void Update();
 
-	private:
-		static LRESULT CALLBACK WindowProcedure(HWND windowHandle, UINT message, WPARAM wParameters, LPARAM lParameters);
+			void MakeVisible() const;
 
-	};
+		private:
+			void Create(HINSTANCE instance, int showWindow, const std::wstring& windowTitle);
+
+		};
+	}
 }

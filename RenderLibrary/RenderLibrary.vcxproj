@@ -19,12 +19,24 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DefaultGameplayUpdater.h" />
+    <ClInclude Include="DefaultRenderer.h" />
     <ClInclude Include="Exception.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="GameplayUpdater.h" />
+    <ClInclude Include="Renderer.h" />
     <ClInclude Include="Window.h" />
+    <ClInclude Include="WindowCreator.h" />
+    <ClInclude Include="WindowUpdater.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DefaultGameplayUpdater.cpp" />
+    <ClCompile Include="DefaultRenderer.cpp" />
     <ClCompile Include="Exception.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Window.cpp" />
+    <ClCompile Include="WindowCreator.cpp" />
+    <ClCompile Include="WindowUpdater.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

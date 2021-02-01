@@ -13,6 +13,6 @@ namespace RenderLibrary
 		Exception();
 		Exception(const std::wstring& error);
 
-		const std::wstring& Message() const;
+		const std::wstring& GetErrorMessage() const;
 	};
 }

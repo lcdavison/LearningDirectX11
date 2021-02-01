@@ -10,7 +10,7 @@ namespace RenderLibrary
 	{
 	}
 
-	const std::wstring& Exception::Message() const
+	const std::wstring& Exception::GetErrorMessage() const
 	{
 		return _errorMessage;
 	}
