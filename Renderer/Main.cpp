@@ -14,6 +14,10 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE previousInstance, LPSTR command
 		Window window(instance, showCommand);
 
 		window.MakeVisible();
+
+		Game game;
+
+		game.Start();
 	}
 	catch (RenderLibrary::Exception exception)
 	{

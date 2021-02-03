@@ -43,6 +43,12 @@
     <Filter Include="Source Files\Gameplay">
       <UniqueIdentifier>{9e32192e-7589-4aef-9ac4-e9bbc0e290c5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Rendering\DirectX11">
+      <UniqueIdentifier>{eb4f5fb3-4fff-4102-a045-bea9ed14a59c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Rendering\DirectX11">
+      <UniqueIdentifier>{e4b85cdb-7961-4f0a-a16c-a26b0f047330}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -72,6 +78,15 @@
     <ClInclude Include="DefaultGameplayUpdater.h">
       <Filter>Header Files\Gameplay</Filter>
     </ClInclude>
+    <ClInclude Include="DirectX11Renderer.h">
+      <Filter>Header Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Module.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ErrorHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Exception.cpp">
@@ -94,6 +109,12 @@
     </ClCompile>
     <ClCompile Include="DefaultGameplayUpdater.cpp">
       <Filter>Source Files\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectX11Renderer.cpp">
+      <Filter>Source Files\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="ErrorHandler.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

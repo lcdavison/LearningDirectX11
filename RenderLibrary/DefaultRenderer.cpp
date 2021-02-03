@@ -9,6 +9,16 @@ namespace RenderLibrary
 
 		}
 
+		void DefaultRenderer::Start()
+		{
+
+		}
+
+		void DefaultRenderer::Stop()
+		{
+
+		}
+
 		void DefaultRenderer::Render()
 		{
 

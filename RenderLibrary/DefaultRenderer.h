@@ -11,6 +11,9 @@ namespace RenderLibrary
 		public:
 			DefaultRenderer();
 
+			virtual void Start() override;
+			virtual void Stop() override;
+
 			virtual void Render() override;
 		};
 	}

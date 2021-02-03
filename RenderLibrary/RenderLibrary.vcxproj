@@ -21,9 +21,12 @@
   <ItemGroup>
     <ClInclude Include="DefaultGameplayUpdater.h" />
     <ClInclude Include="DefaultRenderer.h" />
+    <ClInclude Include="DirectX11Renderer.h" />
+    <ClInclude Include="ErrorHandler.h" />
     <ClInclude Include="Exception.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameplayUpdater.h" />
+    <ClInclude Include="Module.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="WindowCreator.h" />
@@ -32,6 +35,8 @@
   <ItemGroup>
     <ClCompile Include="DefaultGameplayUpdater.cpp" />
     <ClCompile Include="DefaultRenderer.cpp" />
+    <ClCompile Include="DirectX11Renderer.cpp" />
+    <ClCompile Include="ErrorHandler.cpp" />
     <ClCompile Include="Exception.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Window.cpp" />

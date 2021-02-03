@@ -2,13 +2,14 @@
 
 #include "DefaultRenderer.h"
 #include "DefaultGameplayUpdater.h"
+#include "DirectX11Renderer.h"
 
 namespace RenderLibrary
 {
 	namespace Game
 	{
 		Game::Game()
-			: Game(std::make_unique<Rendering::DefaultRenderer>(), 
+			: Game(std::make_unique<Rendering::DirectX11Renderer>(), 
 				   std::make_unique<Gameplay::DefaultGameplayUpdater>())
 		{
 		}
@@ -21,7 +22,8 @@ namespace RenderLibrary
 		}
 
 		void Game::Start()
-		{			
+		{
+			_renderer->Start();
 		}
 
 		void Game::Stop()
