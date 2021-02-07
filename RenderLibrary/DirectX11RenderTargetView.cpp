@@ -22,5 +22,10 @@ namespace RenderLibrary
 
 			ErrorHandler::HandleWindowsError(result, L"Failed to create render target view");
 		}
+
+		ComPtr<ID3D11RenderTargetView> DirectX11RenderTargetView::GetView() const
+		{
+			return renderTargetView_;
+		}
 	}
 }

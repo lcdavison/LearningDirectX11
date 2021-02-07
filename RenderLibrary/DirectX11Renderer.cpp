@@ -25,7 +25,11 @@ namespace RenderLibrary
 
 			CreateRenderTargetView();
 
+			CreateDepthStencilView();
 
+			SetRenderTargets();
+
+			SetupViewport();
 		}
 
 		void DirectX11Renderer::CreateDevice()
@@ -114,9 +118,34 @@ namespace RenderLibrary
 			renderTargetView_->Create(device_);
 		}
 
-		void DirectX11Renderer::CreateDepthStencilBuffer()
+		void DirectX11Renderer::CreateDepthStencilView()
 		{
+			depthStencilView_ = std::make_shared<DirectX11DepthStencilView>(device_);
+			depthStencilView_->Create();
+		}
 
+		void DirectX11Renderer::SetRenderTargets()
+		{
+			ID3D11RenderTargetView** renderTargetView = &renderTargetView_->GetView();
+			ID3D11DepthStencilView* depthStencilView = depthStencilView_->GetView().Get();
+
+			deviceContext_->OMSetRenderTargets(1, renderTargetView, depthStencilView);
+		}
+
+		void DirectX11Renderer::SetupViewport()
+		{
+			D3D11_VIEWPORT viewport {};
+			
+			viewport.Width = 1280;
+			viewport.Height = 720;
+			
+			viewport.MaxDepth = 1.0f;
+			viewport.MinDepth = 0.0f;
+
+			viewport.TopLeftX = 0.0f;
+			viewport.TopLeftY = 0.0f;
+
+			deviceContext_->RSSetViewports(1, &viewport);
 		}
 
 		void DirectX11Renderer::Stop()

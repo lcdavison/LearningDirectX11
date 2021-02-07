@@ -22,6 +22,7 @@
     <ClInclude Include="ApplicationState.h" />
     <ClInclude Include="DefaultGameplayUpdater.h" />
     <ClInclude Include="DefaultRenderer.h" />
+    <ClInclude Include="DirectX11DepthStencilView.h" />
     <ClInclude Include="DirectX11Renderer.h" />
     <ClInclude Include="DirectX11RenderTargetView.h" />
     <ClInclude Include="ErrorHandler.h" />
@@ -38,6 +39,7 @@
     <ClCompile Include="ApplicationState.cpp" />
     <ClCompile Include="DefaultGameplayUpdater.cpp" />
     <ClCompile Include="DefaultRenderer.cpp" />
+    <ClCompile Include="DirectX11DepthStencilView.cpp" />
     <ClCompile Include="DirectX11Renderer.cpp" />
     <ClCompile Include="DirectX11RenderTargetView.cpp" />
     <ClCompile Include="ErrorHandler.cpp" />

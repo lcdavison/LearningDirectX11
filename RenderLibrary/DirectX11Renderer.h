@@ -4,6 +4,7 @@
 #include "Exception.h"
 #include "ErrorHandler.h"
 #include "DirectX11RenderTargetView.h"
+#include "DirectX11DepthStencilView.h"
 
 #include <wrl.h>
 #include <d3d11.h>
@@ -22,6 +23,7 @@ namespace RenderLibrary
 			ComPtr<IDXGISwapChain> swapChain_;
 
 			std::shared_ptr<DirectX11RenderTargetView> renderTargetView_;
+			std::shared_ptr<DirectX11DepthStencilView> depthStencilView_;
 
 		public:
 			DirectX11Renderer();
@@ -43,7 +45,11 @@ namespace RenderLibrary
 
 			void CreateRenderTargetView();
 
-			void CreateDepthStencilBuffer();
+			void CreateDepthStencilView();
+
+			void SetRenderTargets();
+
+			void SetupViewport();
 		};
 	}
 }

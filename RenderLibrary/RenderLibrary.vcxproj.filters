@@ -93,6 +93,9 @@
     <ClInclude Include="DirectX11RenderTargetView.h">
       <Filter>Header Files\Rendering\DirectX11</Filter>
     </ClInclude>
+    <ClInclude Include="DirectX11DepthStencilView.h">
+      <Filter>Header Files\Rendering\DirectX11</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Exception.cpp">
@@ -126,6 +129,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DirectX11RenderTargetView.cpp">
+      <Filter>Source Files\Rendering\DirectX11</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectX11DepthStencilView.cpp">
       <Filter>Source Files\Rendering\DirectX11</Filter>
     </ClCompile>
   </ItemGroup>

@@ -21,6 +21,8 @@ namespace RenderLibrary
 
 			void Create(ComPtr<ID3D11Device> device);
 
+			ComPtr<ID3D11RenderTargetView> GetView() const;
+
 		private:
 			void GetBackBuffer(ComPtr<IDXGISwapChain> swapChain);
 		};
