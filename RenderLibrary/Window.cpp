@@ -4,22 +4,22 @@ namespace RenderLibrary
 {
 	namespace Window
 	{
-		Window::Window(HINSTANCE instance, int showWindow) : Window(instance, showWindow, L"New Window")
+		Window::Window(HINSTANCE instance) : Window(instance, L"New Window")
 		{
 		}
 
-		Window::Window(HINSTANCE instance, int showWindow, const std::wstring& windowTitle)
+		Window::Window(HINSTANCE instance, const std::wstring& windowTitle)
 		{
-			Create(instance, showWindow, windowTitle);
+			Create(instance, windowTitle);
 		}
 
 		Window::~Window()
 		{
 		}
 
-		void Window::Create(HINSTANCE instance, int showWindow, const std::wstring& windowTitle)
+		void Window::Create(HINSTANCE instance, const std::wstring& windowTitle)
 		{
-			windowHandle_ = windowCreator_.Create(instance, showWindow, windowTitle);
+			windowHandle_ = windowCreator_.Create(instance, windowTitle);
 		}
 
 		void Window::Update()
