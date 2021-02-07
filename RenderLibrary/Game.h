@@ -4,6 +4,7 @@
 
 #include "Renderer.h"
 #include "GameplayUpdater.h"
+#include "ApplicationState.h"
 
 namespace RenderLibrary
 {
@@ -12,12 +13,21 @@ namespace RenderLibrary
 		class Game
 		{
 		protected:
-			std::unique_ptr<Rendering::Renderer> _renderer;
-			std::unique_ptr<Gameplay::GameplayUpdater> _gameplayUpdater;
+			std::unique_ptr<Rendering::Renderer> renderer_;
+			std::unique_ptr<Gameplay::GameplayUpdater> gameplayUpdater_;
+
+			std::shared_ptr<Window::Window> window_;
+
+			bool isRunning_;
 
 		public:
 			Game();
 			Game(std::unique_ptr<Rendering::Renderer> renderer, std::unique_ptr<Gameplay::GameplayUpdater> gameplayUpdater);
+
+			void Run();
+
+		private:
+			virtual void Initialise();
 
 			virtual void Start();
 			virtual void Stop();

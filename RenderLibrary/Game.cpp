@@ -9,35 +9,61 @@ namespace RenderLibrary
 	namespace Game
 	{
 		Game::Game()
-			: Game(std::make_unique<Rendering::DirectX11Renderer>(), 
+			: Game(std::make_unique<Rendering::DirectX11Renderer>(),
 				   std::make_unique<Gameplay::DefaultGameplayUpdater>())
 		{
 		}
 
 		Game::Game(std::unique_ptr<Rendering::Renderer> renderer, 
 				   std::unique_ptr<Gameplay::GameplayUpdater> gameplayUpdater)
-			: _renderer(std::move(renderer)),
-			_gameplayUpdater(std::move(gameplayUpdater))
+			: renderer_(std::move(renderer)),
+			gameplayUpdater_(std::move(gameplayUpdater)),
+			isRunning_(false)
 		{
+		}
+
+		void Game::Run()
+		{
+			Initialise();
+
+			Start();
+
+			while (true)
+			{
+				Update();
+				Render();
+			}
+
+			Stop();
+		}
+
+		void Game::Initialise()
+		{
+			window_ = std::make_shared<Window::Window>(ApplicationState::instance, ApplicationState::showCommand);
+			window_->MakeVisible();
+
+			renderer_->Initialise(window_);
 		}
 
 		void Game::Start()
 		{
-			_renderer->Start();
-		}
-
-		void Game::Stop()
-		{
+			renderer_->Start();
 		}
 
 		void Game::Update()
 		{
-			_gameplayUpdater->Update();
+			window_->Update();
+
+			gameplayUpdater_->Update();
 		}
 
 		void Game::Render()
 		{
-			_renderer->Render();
+			renderer_->Render();
+		}
+
+		void Game::Stop()
+		{
 		}
 	}
 }

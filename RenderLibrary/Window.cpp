@@ -19,17 +19,22 @@ namespace RenderLibrary
 
 		void Window::Create(HINSTANCE instance, int showWindow, const std::wstring& windowTitle)
 		{
-			_windowHandle = _windowCreator.Create(instance, showWindow, windowTitle);
+			windowHandle_ = windowCreator_.Create(instance, showWindow, windowTitle);
 		}
 
 		void Window::Update()
 		{
-			_windowUpdater.Update(_windowHandle);
+			windowUpdater_.Update(windowHandle_);
 		}
 
 		void Window::MakeVisible() const
 		{
-			ShowWindow(_windowHandle, SW_SHOW);
+			ShowWindow(windowHandle_, SW_SHOW);
+		}
+
+		HWND Window::GetWindowHandle() const
+		{
+			return windowHandle_;
 		}
 	}
 }

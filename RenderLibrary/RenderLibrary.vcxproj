@@ -19,9 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ApplicationState.h" />
     <ClInclude Include="DefaultGameplayUpdater.h" />
     <ClInclude Include="DefaultRenderer.h" />
     <ClInclude Include="DirectX11Renderer.h" />
+    <ClInclude Include="DirectX11RenderTargetView.h" />
     <ClInclude Include="ErrorHandler.h" />
     <ClInclude Include="Exception.h" />
     <ClInclude Include="Game.h" />
@@ -33,9 +35,11 @@
     <ClInclude Include="WindowUpdater.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ApplicationState.cpp" />
     <ClCompile Include="DefaultGameplayUpdater.cpp" />
     <ClCompile Include="DefaultRenderer.cpp" />
     <ClCompile Include="DirectX11Renderer.cpp" />
+    <ClCompile Include="DirectX11RenderTargetView.cpp" />
     <ClCompile Include="ErrorHandler.cpp" />
     <ClCompile Include="Exception.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -111,7 +115,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>EnableAllWarnings</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>

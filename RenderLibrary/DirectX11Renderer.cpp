@@ -8,18 +8,24 @@ namespace RenderLibrary
 		{
 		}
 
+		DirectX11Renderer::~DirectX11Renderer()
+		{
+		}
+
+		void DirectX11Renderer::Initialise(std::shared_ptr<Window::Window> window)
+		{
+			window_ = window;
+		}
+
 		void DirectX11Renderer::Start()
 		{
 			CreateDevice();
+
 			CreateSwapChain();
-		}
 
-		void DirectX11Renderer::Stop()
-		{
-		}
+			CreateRenderTargetView();
 
-		void DirectX11Renderer::Render()
-		{
+
 		}
 
 		void DirectX11Renderer::CreateDevice()
@@ -29,9 +35,9 @@ namespace RenderLibrary
 			D3D_FEATURE_LEVEL featureLevel;
 
 			HRESULT result = D3D11CreateDevice(
-				NULL, D3D_DRIVER_TYPE_HARDWARE, 
-				NULL, flags, NULL, 0, 
-				D3D11_SDK_VERSION, &_device, &featureLevel, &_deviceContext);
+				NULL, D3D_DRIVER_TYPE_HARDWARE,
+				NULL, flags, NULL, 0,
+				D3D11_SDK_VERSION, &device_, &featureLevel, &deviceContext_);
 
 			ErrorHandler::HandleWindowsError(result, L"Failed to create D3D11 Device");
 
@@ -43,9 +49,15 @@ namespace RenderLibrary
 
 		void DirectX11Renderer::CreateSwapChain()
 		{
+			swapChain_.Reset();
+
 			DXGI_SWAP_CHAIN_DESC swapChainDescriptor = CreateSwapChainDescriptor();
 
-			
+			ComPtr<IDXGIFactory> idxgiFactory = GetIDXGIFactory();
+
+			HRESULT result = idxgiFactory->CreateSwapChain(device_.Get(), &swapChainDescriptor, &swapChain_);
+
+			ErrorHandler::HandleWindowsError(result, L"Failed to create swap chain");
 		}
 
 		DXGI_SWAP_CHAIN_DESC DirectX11Renderer::CreateSwapChainDescriptor()
@@ -53,7 +65,7 @@ namespace RenderLibrary
 			DXGI_SWAP_CHAIN_DESC swapChainDescriptor {};
 
 			swapChainDescriptor.BufferDesc.Width = 1280;
-			swapChainDescriptor.BufferDesc.Height = 1280;
+			swapChainDescriptor.BufferDesc.Height = 720;
 			swapChainDescriptor.BufferDesc.RefreshRate.Numerator = 60;
 			swapChainDescriptor.BufferDesc.RefreshRate.Denominator = 1;
 			swapChainDescriptor.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
@@ -66,12 +78,54 @@ namespace RenderLibrary
 			swapChainDescriptor.SampleDesc.Count = 1;
 			swapChainDescriptor.SampleDesc.Quality = 0;
 
-			swapChainDescriptor.OutputWindow = NULL;
+			swapChainDescriptor.OutputWindow = window_->GetWindowHandle();
 			swapChainDescriptor.Windowed = true;
 
 			swapChainDescriptor.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
 
 			swapChainDescriptor.Flags = 0;
+
+			return swapChainDescriptor;
+		}
+
+		ComPtr<IDXGIFactory> DirectX11Renderer::GetIDXGIFactory()
+		{
+			ComPtr<IDXGIDevice> idxgiDevice;
+			HRESULT result = device_.As(&idxgiDevice);
+
+			ErrorHandler::HandleWindowsError(result, L"Failed to retrieve IDXGIDevice interface");
+
+			ComPtr<IDXGIAdapter> idxgiAdapter;
+			result = idxgiDevice->GetAdapter(&idxgiAdapter);
+
+			ErrorHandler::HandleWindowsError(result, L"Failed to retrieve IDXGIAdapter interface");
+
+			ComPtr<IDXGIFactory> idxgiFactory;
+			result = idxgiAdapter->GetParent(IID_IDXGIFactory, &idxgiFactory);
+
+			ErrorHandler::HandleWindowsError(result, L"Failed to retrieve IDXGIFactory interface");
+
+			return idxgiFactory;
+		}
+
+		void DirectX11Renderer::CreateRenderTargetView()
+		{
+			renderTargetView_ = std::make_shared<DirectX11RenderTargetView>(swapChain_);
+			renderTargetView_->Create(device_);
+		}
+
+		void DirectX11Renderer::CreateDepthStencilBuffer()
+		{
+
+		}
+
+		void DirectX11Renderer::Stop()
+		{
+		}
+
+		void DirectX11Renderer::Render()
+		{
+
 		}
 	}
 }

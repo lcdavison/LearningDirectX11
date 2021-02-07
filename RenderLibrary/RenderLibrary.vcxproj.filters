@@ -87,6 +87,12 @@
     <ClInclude Include="ErrorHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ApplicationState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX11RenderTargetView.h">
+      <Filter>Header Files\Rendering\DirectX11</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Exception.cpp">
@@ -115,6 +121,12 @@
     </ClCompile>
     <ClCompile Include="ErrorHandler.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ApplicationState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectX11RenderTargetView.cpp">
+      <Filter>Source Files\Rendering\DirectX11</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

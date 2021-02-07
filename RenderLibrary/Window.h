@@ -11,10 +11,10 @@ namespace RenderLibrary
 	{
 		class Window
 		{
-			HWND _windowHandle;
+			HWND windowHandle_;
 
-			WindowCreator _windowCreator;
-			WindowUpdater _windowUpdater;
+			WindowCreator windowCreator_;
+			WindowUpdater windowUpdater_;
 
 		public:
 			Window(HINSTANCE instance, int showWindow);
@@ -25,6 +25,8 @@ namespace RenderLibrary
 			void Update();
 
 			void MakeVisible() const;
+
+			HWND GetWindowHandle() const;
 
 		private:
 			void Create(HINSTANCE instance, int showWindow, const std::wstring& windowTitle);

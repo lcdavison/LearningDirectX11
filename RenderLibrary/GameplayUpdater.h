@@ -7,6 +7,8 @@ namespace RenderLibrary
 		class GameplayUpdater
 		{
 		public:
+			virtual ~GameplayUpdater() = default;
+
 			virtual void Update() = 0;
 		};
 	}
