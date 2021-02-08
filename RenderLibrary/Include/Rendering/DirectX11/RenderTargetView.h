@@ -6,6 +6,7 @@
 
 #include "ErrorHandler.h"
 #include "Rendering/DirectX11/Device.h"
+#include "Rendering/DirectX11/SwapChain.h"
 
 using namespace Microsoft::WRL;
 
@@ -18,19 +19,16 @@ namespace RenderLibrary
 			class RenderTargetView
 			{
 				std::shared_ptr<Device> device_;
+				std::shared_ptr<SwapChain> swapChain_;
 
 				ComPtr<ID3D11RenderTargetView> renderTargetView_;
-				ComPtr<ID3D11Texture2D> backBuffer_;
 
 			public:
-				RenderTargetView(std::shared_ptr<Device> device, ComPtr<IDXGISwapChain> swapChain);
+				RenderTargetView(std::shared_ptr<Device> device, std::shared_ptr<SwapChain> swapChain);
 
 				void Create();
 
 				ComPtr<ID3D11RenderTargetView> GetView() const;
-
-			private:
-				void GetBackBuffer(ComPtr<IDXGISwapChain> swapChain);
 			};
 		}
 	}

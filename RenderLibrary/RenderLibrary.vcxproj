@@ -32,6 +32,7 @@
     <ClInclude Include="Include\GameplayUpdater.h" />
     <ClInclude Include="Include\Module.h" />
     <ClInclude Include="Include\Rendering\BaseRenderer.h" />
+    <ClInclude Include="Include\Rendering\DirectX11\SwapChain.h" />
     <ClInclude Include="Include\Window\Window.h" />
     <ClInclude Include="Include\Window\WindowCreator.h" />
     <ClInclude Include="Include\Window\WindowUpdater.h" />
@@ -47,6 +48,7 @@
     <ClCompile Include="Source\ErrorHandler.cpp" />
     <ClCompile Include="Source\Exceptions\Exception.cpp" />
     <ClCompile Include="Source\Game.cpp" />
+    <ClCompile Include="Source\Rendering\DirectX11\SwapChain.cpp" />
     <ClCompile Include="Source\Window\Window.cpp" />
     <ClCompile Include="Source\Window\WindowCreator.cpp" />
     <ClCompile Include="Source\Window\WindowUpdater.cpp" />

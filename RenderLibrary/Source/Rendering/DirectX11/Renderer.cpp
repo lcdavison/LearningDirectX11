@@ -19,105 +19,34 @@ namespace RenderLibrary
 				window_ = window;
 
 				device_ = std::make_shared<Device>();
-				device_->Create();
+				swapChain_ = std::make_shared<SwapChain>(device_, window);
+				renderTargetView_ = std::make_shared<RenderTargetView>(device_, swapChain_);
+				depthStencilView_ = std::make_shared<DepthStencilView>(device_);
 			}
 
 			void Renderer::Start()
 			{
-				CreateSwapChain();
+				device_->Create();
 
-				CreateRenderTargetView();
+				swapChain_->Create();
 
-				CreateDepthStencilView();
+				renderTargetView_->Create();
+
+				depthStencilView_->Create();
 
 				SetRenderTargets();
 
 				SetupViewport();
 			}
 
-			void Renderer::CreateSwapChain()
-			{
-				swapChain_.Reset();
-
-				DXGI_SWAP_CHAIN_DESC swapChainDescriptor = CreateSwapChainDescriptor();
-
-				ComPtr<IDXGIFactory> idxgiFactory = GetIDXGIFactory();
-
-				auto device = device_->GetDeviceInterface();
-				HRESULT result = idxgiFactory->CreateSwapChain(device.Get(), &swapChainDescriptor, &swapChain_);
-
-				ErrorHandler::HandleWindowsError(result, L"Failed to create swap chain");
-			}
-
-			DXGI_SWAP_CHAIN_DESC Renderer::CreateSwapChainDescriptor()
-			{
-				DXGI_SWAP_CHAIN_DESC swapChainDescriptor {};
-
-				swapChainDescriptor.BufferDesc.Width = 1280;
-				swapChainDescriptor.BufferDesc.Height = 720;
-				swapChainDescriptor.BufferDesc.RefreshRate.Numerator = 60;
-				swapChainDescriptor.BufferDesc.RefreshRate.Denominator = 1;
-				swapChainDescriptor.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-				swapChainDescriptor.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
-				swapChainDescriptor.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
-
-				swapChainDescriptor.BufferCount = 1;
-				swapChainDescriptor.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
-
-				swapChainDescriptor.SampleDesc.Count = 1;
-				swapChainDescriptor.SampleDesc.Quality = 0;
-
-				swapChainDescriptor.OutputWindow = window_->GetWindowHandle();
-				swapChainDescriptor.Windowed = true;
-
-				swapChainDescriptor.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
-
-				swapChainDescriptor.Flags = 0;
-
-				return swapChainDescriptor;
-			}
-
-			ComPtr<IDXGIFactory> Renderer::GetIDXGIFactory()
-			{
-				auto device = device_->GetDeviceInterface();
-
-				ComPtr<IDXGIDevice> idxgiDevice;
-				HRESULT result = device.As(&idxgiDevice);
-
-				ErrorHandler::HandleWindowsError(result, L"Failed to retrieve IDXGIDevice interface");
-
-				ComPtr<IDXGIAdapter> idxgiAdapter;
-				result = idxgiDevice->GetAdapter(&idxgiAdapter);
-
-				ErrorHandler::HandleWindowsError(result, L"Failed to retrieve IDXGIAdapter interface");
-
-				ComPtr<IDXGIFactory> idxgiFactory;
-				result = idxgiAdapter->GetParent(IID_IDXGIFactory, &idxgiFactory);
-
-				ErrorHandler::HandleWindowsError(result, L"Failed to retrieve IDXGIFactory interface");
-
-				return idxgiFactory;
-			}
-
-			void Renderer::CreateRenderTargetView()
-			{
-				renderTargetView_ = std::make_shared<RenderTargetView>(device_, swapChain_);
-				renderTargetView_->Create();
-			}
-
-			void Renderer::CreateDepthStencilView()
-			{
-				depthStencilView_ = std::make_shared<DepthStencilView>(device_);
-				depthStencilView_->Create();
-			}
-
 			void Renderer::SetRenderTargets()
 			{
-				ID3D11RenderTargetView** renderTargetView = &renderTargetView_->GetView();
-				ID3D11DepthStencilView* depthStencilView = depthStencilView_->GetView().Get();
-
 				auto deviceContext = device_->GetContextInterface();
-				deviceContext->OMSetRenderTargets(1, renderTargetView, depthStencilView);
+
+				auto renderTargetViews = &(renderTargetView_->GetView());
+				auto depthStencilView = depthStencilView_->GetView();
+
+				deviceContext->OMSetRenderTargets(1, renderTargetViews, depthStencilView.Get());
 			}
 
 			void Renderer::SetupViewport()
@@ -146,8 +75,7 @@ namespace RenderLibrary
 				ClearRenderTargets();
 
 
-
-				swapChain_->Present(0, 0);
+				swapChain_->PresentBackBuffer();
 			}
 
 			void Renderer::ClearRenderTargets()
