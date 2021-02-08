@@ -6,7 +6,8 @@ namespace RenderLibrary
 	{
 		namespace DirectX11
 		{
-			RenderTargetView::RenderTargetView(ComPtr<IDXGISwapChain> swapChain)
+			RenderTargetView::RenderTargetView(std::shared_ptr<Device> device, ComPtr<IDXGISwapChain> swapChain)
+				: device_(device)
 			{
 				GetBackBuffer(swapChain);
 			}
@@ -18,8 +19,10 @@ namespace RenderLibrary
 				ErrorHandler::HandleWindowsError(result, L"Failed to retrieve back buffer");
 			}
 
-			void RenderTargetView::Create(ComPtr<ID3D11Device> device)
+			void RenderTargetView::Create()
 			{
+				auto device = device_->GetDeviceInterface();
+
 				HRESULT result = device->CreateRenderTargetView(backBuffer_.Get(), NULL, &renderTargetView_);
 
 				ErrorHandler::HandleWindowsError(result, L"Failed to create render target view");

@@ -6,7 +6,7 @@ namespace RenderLibrary
 	{
 		namespace DirectX11
 		{
-			DepthStencilView::DepthStencilView(ComPtr<ID3D11Device> device)
+			DepthStencilView::DepthStencilView(std::shared_ptr<Device> device)
 				: device_(device)
 			{
 			}
@@ -41,14 +41,18 @@ namespace RenderLibrary
 				bufferDescriptor.CPUAccessFlags = 0;
 				bufferDescriptor.MiscFlags = 0;
 
-				HRESULT result = device_->CreateTexture2D(&bufferDescriptor, nullptr, &buffer_);
+				auto device = device_->GetDeviceInterface();
+
+				HRESULT result = device->CreateTexture2D(&bufferDescriptor, nullptr, &buffer_);
 
 				ErrorHandler::HandleWindowsError(result, L"Failed to create depth stencil buffer");
 			}
 
 			void DepthStencilView::CreateDepthStencilView()
 			{
-				HRESULT result = device_->CreateDepthStencilView(buffer_.Get(), 0, &depthStencilView_);
+				auto device = device_->GetDeviceInterface();
+
+				HRESULT result = device->CreateDepthStencilView(buffer_.Get(), 0, &depthStencilView_);
 
 				ErrorHandler::HandleWindowsError(result, L"Failed to create depth stencil view");
 			}

@@ -5,6 +5,7 @@
 #include "ErrorHandler.h"
 #include "Rendering/DirectX11/RenderTargetView.h"
 #include "Rendering/DirectX11/DepthStencilView.h"
+#include "Rendering/DirectX11/Device.h"
 
 #include <wrl.h>
 #include <d3d11.h>
@@ -22,10 +23,9 @@ namespace RenderLibrary
 		{
 			class Renderer : public BaseRenderer
 			{
-				ComPtr<ID3D11Device> device_;
-				ComPtr<ID3D11DeviceContext> deviceContext_;
 				ComPtr<IDXGISwapChain> swapChain_;
 
+				std::shared_ptr<Device> device_;
 				std::shared_ptr<RenderTargetView> renderTargetView_;
 				std::shared_ptr<DepthStencilView> depthStencilView_;
 
@@ -41,8 +41,6 @@ namespace RenderLibrary
 				virtual void Render() override;
 
 			private:
-				void CreateDevice();
-
 				void CreateSwapChain();
 				DXGI_SWAP_CHAIN_DESC CreateSwapChainDescriptor();
 				ComPtr<IDXGIFactory> GetIDXGIFactory();

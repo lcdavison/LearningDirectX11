@@ -96,6 +96,9 @@
     <ClInclude Include="Include\Exceptions\Exception.h">
       <Filter>Header Files\Exception</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Rendering\DirectX11\Device.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\ApplicationState.cpp">
@@ -133,6 +136,9 @@
     </ClCompile>
     <ClCompile Include="Source\Rendering\DefaultRenderer.cpp">
       <Filter>Source Files\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\DirectX11\Device.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

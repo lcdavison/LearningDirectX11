@@ -2,7 +2,9 @@
 
 #include <wrl.h>
 #include <d3d11.h>
+#include <memory>
 
+#include "Rendering/DirectX11/Device.h"
 #include "ErrorHandler.h"
 
 using namespace Microsoft::WRL;
@@ -15,12 +17,13 @@ namespace RenderLibrary
 		{
 			class DepthStencilView
 			{
-				ComPtr<ID3D11Device> device_;
+				std::shared_ptr<Device> device_;
+
 				ComPtr<ID3D11DepthStencilView> depthStencilView_;
 				ComPtr<ID3D11Texture2D> buffer_;
 
 			public:
-				DepthStencilView(ComPtr<ID3D11Device> device);
+				DepthStencilView(std::shared_ptr<Device> device);
 
 				void Create();
 

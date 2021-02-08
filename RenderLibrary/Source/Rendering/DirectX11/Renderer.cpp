@@ -17,12 +17,13 @@ namespace RenderLibrary
 			void Renderer::Initialise(std::shared_ptr<Window::Window> window)
 			{
 				window_ = window;
+
+				device_ = std::make_shared<Device>();
+				device_->Create();
 			}
 
 			void Renderer::Start()
 			{
-				CreateDevice();
-
 				CreateSwapChain();
 
 				CreateRenderTargetView();
@@ -34,25 +35,6 @@ namespace RenderLibrary
 				SetupViewport();
 			}
 
-			void Renderer::CreateDevice()
-			{
-				UINT flags = 0;
-
-				D3D_FEATURE_LEVEL featureLevel;
-
-				HRESULT result = D3D11CreateDevice(
-					NULL, D3D_DRIVER_TYPE_HARDWARE,
-					NULL, flags, NULL, 0,
-					D3D11_SDK_VERSION, &device_, &featureLevel, &deviceContext_);
-
-				ErrorHandler::HandleWindowsError(result, L"Failed to create D3D11 Device");
-
-				if (featureLevel != D3D_FEATURE_LEVEL_11_0)
-				{
-					throw Exception(L"DirectX 11 not supported");
-				}
-			}
-
 			void Renderer::CreateSwapChain()
 			{
 				swapChain_.Reset();
@@ -61,7 +43,8 @@ namespace RenderLibrary
 
 				ComPtr<IDXGIFactory> idxgiFactory = GetIDXGIFactory();
 
-				HRESULT result = idxgiFactory->CreateSwapChain(device_.Get(), &swapChainDescriptor, &swapChain_);
+				auto device = device_->GetDeviceInterface();
+				HRESULT result = idxgiFactory->CreateSwapChain(device.Get(), &swapChainDescriptor, &swapChain_);
 
 				ErrorHandler::HandleWindowsError(result, L"Failed to create swap chain");
 			}
@@ -96,8 +79,10 @@ namespace RenderLibrary
 
 			ComPtr<IDXGIFactory> Renderer::GetIDXGIFactory()
 			{
+				auto device = device_->GetDeviceInterface();
+
 				ComPtr<IDXGIDevice> idxgiDevice;
-				HRESULT result = device_.As(&idxgiDevice);
+				HRESULT result = device.As(&idxgiDevice);
 
 				ErrorHandler::HandleWindowsError(result, L"Failed to retrieve IDXGIDevice interface");
 
@@ -116,8 +101,8 @@ namespace RenderLibrary
 
 			void Renderer::CreateRenderTargetView()
 			{
-				renderTargetView_ = std::make_shared<RenderTargetView>(swapChain_);
-				renderTargetView_->Create(device_);
+				renderTargetView_ = std::make_shared<RenderTargetView>(device_, swapChain_);
+				renderTargetView_->Create();
 			}
 
 			void Renderer::CreateDepthStencilView()
@@ -131,7 +116,8 @@ namespace RenderLibrary
 				ID3D11RenderTargetView** renderTargetView = &renderTargetView_->GetView();
 				ID3D11DepthStencilView* depthStencilView = depthStencilView_->GetView().Get();
 
-				deviceContext_->OMSetRenderTargets(1, renderTargetView, depthStencilView);
+				auto deviceContext = device_->GetContextInterface();
+				deviceContext->OMSetRenderTargets(1, renderTargetView, depthStencilView);
 			}
 
 			void Renderer::SetupViewport()
@@ -147,7 +133,8 @@ namespace RenderLibrary
 				viewport.TopLeftX = 0.0f;
 				viewport.TopLeftY = 0.0f;
 
-				deviceContext_->RSSetViewports(1, &viewport);
+				auto deviceContext = device_->GetContextInterface();
+				deviceContext->RSSetViewports(1, &viewport);
 			}
 
 			void Renderer::Stop()
@@ -165,10 +152,12 @@ namespace RenderLibrary
 
 			void Renderer::ClearRenderTargets()
 			{
-				XMFLOAT4 clearColour {0.0f, 1.0f, 0.0f, 1.0f};
-				deviceContext_->ClearRenderTargetView(renderTargetView_->GetView().Get(), reinterpret_cast<float*>(&clearColour));
+				auto deviceContext = device_->GetContextInterface();
 
-				deviceContext_->ClearDepthStencilView(depthStencilView_->GetView().Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+				XMFLOAT4 clearColour {0.0f, 1.0f, 0.0f, 1.0f};
+				deviceContext->ClearRenderTargetView(renderTargetView_->GetView().Get(), reinterpret_cast<float*>(&clearColour));
+
+				deviceContext->ClearDepthStencilView(depthStencilView_->GetView().Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 			}
 		}
 	}
