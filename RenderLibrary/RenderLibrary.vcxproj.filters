@@ -51,88 +51,88 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Window.h">
-      <Filter>Header Files\Window</Filter>
+    <ClInclude Include="Include\ApplicationState.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="WindowCreator.h">
-      <Filter>Header Files\Window</Filter>
+    <ClInclude Include="Include\DefaultGameplayUpdater.h">
+      <Filter>Header Files\Gameplay</Filter>
     </ClInclude>
-    <ClInclude Include="WindowUpdater.h">
-      <Filter>Header Files\Window</Filter>
+    <ClInclude Include="Include\ErrorHandler.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Exception.h">
-      <Filter>Header Files\Exception</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
+    <ClInclude Include="Include\Game.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer.h">
-      <Filter>Header Files\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="GameplayUpdater.h">
+    <ClInclude Include="Include\GameplayUpdater.h">
       <Filter>Header Files\Gameplay</Filter>
     </ClInclude>
-    <ClInclude Include="DefaultRenderer.h">
-      <Filter>Header Files\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="DefaultGameplayUpdater.h">
-      <Filter>Header Files\Gameplay</Filter>
-    </ClInclude>
-    <ClInclude Include="DirectX11Renderer.h">
-      <Filter>Header Files\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Module.h">
+    <ClInclude Include="Include\Module.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ErrorHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ApplicationState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DirectX11RenderTargetView.h">
+    <ClInclude Include="Include\Rendering\DirectX11\Renderer.h">
       <Filter>Header Files\Rendering\DirectX11</Filter>
     </ClInclude>
-    <ClInclude Include="DirectX11DepthStencilView.h">
+    <ClInclude Include="Include\Rendering\DirectX11\DepthStencilView.h">
       <Filter>Header Files\Rendering\DirectX11</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\DirectX11\RenderTargetView.h">
+      <Filter>Header Files\Rendering\DirectX11</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\BaseRenderer.h">
+      <Filter>Header Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\DefaultRenderer.h">
+      <Filter>Header Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Window\Window.h">
+      <Filter>Header Files\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Window\WindowCreator.h">
+      <Filter>Header Files\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Window\WindowUpdater.h">
+      <Filter>Header Files\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Exceptions\Exception.h">
+      <Filter>Header Files\Exception</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Exception.cpp">
-      <Filter>Source Files\Exception</Filter>
+    <ClCompile Include="Source\ApplicationState.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Window.cpp">
-      <Filter>Source Files\Window</Filter>
-    </ClCompile>
-    <ClCompile Include="WindowCreator.cpp">
-      <Filter>Source Files\Window</Filter>
-    </ClCompile>
-    <ClCompile Include="WindowUpdater.cpp">
-      <Filter>Source Files\Window</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="DefaultRenderer.cpp">
-      <Filter>Source Files\Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="DefaultGameplayUpdater.cpp">
+    <ClCompile Include="Source\DefaultGameplayUpdater.cpp">
       <Filter>Source Files\Gameplay</Filter>
     </ClCompile>
-    <ClCompile Include="DirectX11Renderer.cpp">
+    <ClCompile Include="Source\ErrorHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\DirectX11\Renderer.cpp">
+      <Filter>Source Files\Rendering\DirectX11</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\DirectX11\DepthStencilView.cpp">
+      <Filter>Source Files\Rendering\DirectX11</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\DirectX11\RenderTargetView.cpp">
+      <Filter>Source Files\Rendering\DirectX11</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Window\Window.cpp">
+      <Filter>Source Files\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Window\WindowCreator.cpp">
+      <Filter>Source Files\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Window\WindowUpdater.cpp">
+      <Filter>Source Files\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Exceptions\Exception.cpp">
+      <Filter>Source Files\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\DefaultRenderer.cpp">
       <Filter>Source Files\Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="ErrorHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ApplicationState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DirectX11RenderTargetView.cpp">
-      <Filter>Source Files\Rendering\DirectX11</Filter>
-    </ClCompile>
-    <ClCompile Include="DirectX11DepthStencilView.cpp">
-      <Filter>Source Files\Rendering\DirectX11</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

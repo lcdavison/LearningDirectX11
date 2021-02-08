@@ -1,12 +1,12 @@
 #pragma once
 
-#include "Renderer.h"
+#include "BaseRenderer.h"
 
 namespace RenderLibrary
 {
 	namespace Rendering
 	{
-		class DefaultRenderer : public Renderer
+		class DefaultRenderer : public BaseRenderer
 		{
 		public:
 			DefaultRenderer();

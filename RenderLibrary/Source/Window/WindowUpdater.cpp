@@ -1,4 +1,4 @@
-#include "WindowUpdater.h"
+#include "Window/WindowUpdater.h"
 
 namespace RenderLibrary
 {

@@ -1,20 +1,20 @@
 #include "Game.h"
 
-#include "DefaultRenderer.h"
+#include "Rendering/DefaultRenderer.h"
 #include "DefaultGameplayUpdater.h"
-#include "DirectX11Renderer.h"
+#include "Rendering/DirectX11/Renderer.h"
 
 namespace RenderLibrary
 {
 	namespace Game
 	{
 		Game::Game()
-			: Game(std::make_unique<Rendering::DirectX11Renderer>(),
+			: Game(std::make_unique<Rendering::DirectX11::Renderer>(),
 				   std::make_unique<Gameplay::DefaultGameplayUpdater>())
 		{
 		}
 
-		Game::Game(std::unique_ptr<Rendering::Renderer> renderer, 
+		Game::Game(std::unique_ptr<Rendering::BaseRenderer> renderer,
 				   std::unique_ptr<Gameplay::GameplayUpdater> gameplayUpdater)
 			: renderer_(std::move(renderer)),
 			gameplayUpdater_(std::move(gameplayUpdater)),

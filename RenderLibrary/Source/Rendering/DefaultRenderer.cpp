@@ -1,4 +1,4 @@
-#include "DefaultRenderer.h"
+#include "Rendering/DefaultRenderer.h"
 
 namespace RenderLibrary
 {

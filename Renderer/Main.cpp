@@ -1,8 +1,8 @@
 #include <Windows.h>
 
 #include "Game.h"
-#include "Window.h"
-#include "Exception.h"
+#include "Window/Window.h"
+#include "Exceptions/Exception.h"
 #include "ApplicationState.h"
 
 using namespace RenderLibrary::Window;
