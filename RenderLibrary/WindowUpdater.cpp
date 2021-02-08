@@ -12,7 +12,7 @@ namespace RenderLibrary
 		{
 			MSG message {};
 
-			while (GetMessage(&message, windowHandle, 0, 0))
+			while (PeekMessage(&message, windowHandle, 0, 0, PM_REMOVE))
 			{
 				TranslateMessage(&message);
 				DispatchMessage(&message);
