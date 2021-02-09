@@ -44,7 +44,7 @@ namespace RenderLibrary
 
 		void Game::Initialise()
 		{
-			window_ = std::make_shared<Window::Window>(ApplicationState::instance);
+			window_ = std::make_shared<Window::Window>(instance_);
 			window_->MakeVisible();
 
 			renderer_->Initialise(window_);
