@@ -21,14 +21,14 @@ namespace RenderLibrary
 				std::shared_ptr<Device> device_;
 				std::shared_ptr<SwapChain> swapChain_;
 
-				ComPtr<ID3D11RenderTargetView> renderTargetView_;
+				ComPtr<ID3D11RenderTargetView> renderTargetViewInterface_;
 
 			public:
 				RenderTargetView(std::shared_ptr<Device> device, std::shared_ptr<SwapChain> swapChain);
 
 				void Create();
 
-				ComPtr<ID3D11RenderTargetView> GetView() const;
+				ComPtr<ID3D11RenderTargetView> GetViewInterface() const;
 			};
 		}
 	}

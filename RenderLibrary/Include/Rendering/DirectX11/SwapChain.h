@@ -20,7 +20,7 @@ namespace RenderLibrary
 				std::shared_ptr<Device> device_;
 				std::shared_ptr<Window::Window> window_;
 
-				ComPtr<IDXGISwapChain> swapChain_;
+				ComPtr<IDXGISwapChain> swapChainInterface_;
 
 			public:
 				SwapChain(std::shared_ptr<Device> device, std::shared_ptr<Window::Window> window);

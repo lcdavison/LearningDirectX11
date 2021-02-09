@@ -43,7 +43,7 @@ namespace RenderLibrary
 
 				auto device = device_->GetDeviceInterface();
 
-				HRESULT result = device->CreateTexture2D(&bufferDescriptor, nullptr, &buffer_);
+				HRESULT result = device->CreateTexture2D(&bufferDescriptor, nullptr, &bufferInterface_);
 
 				ErrorHandler::HandleWindowsError(result, L"Failed to create depth stencil buffer");
 			}
@@ -52,14 +52,14 @@ namespace RenderLibrary
 			{
 				auto device = device_->GetDeviceInterface();
 
-				HRESULT result = device->CreateDepthStencilView(buffer_.Get(), 0, &depthStencilView_);
+				HRESULT result = device->CreateDepthStencilView(bufferInterface_.Get(), 0, &depthStencilViewInterface_);
 
 				ErrorHandler::HandleWindowsError(result, L"Failed to create depth stencil view");
 			}
 
-			ComPtr<ID3D11DepthStencilView> DepthStencilView::GetView() const
+			ComPtr<ID3D11DepthStencilView> DepthStencilView::GetViewInterface() const
 			{
-				return depthStencilView_;
+				return depthStencilViewInterface_;
 			}
 		}
 	}

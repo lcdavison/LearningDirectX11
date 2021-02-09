@@ -16,12 +16,12 @@ namespace RenderLibrary
 			{
 				auto device = device_->GetDeviceInterface();
 				
-				swapChain_.Reset();
+				swapChainInterface_.Reset();
 
 				DXGI_SWAP_CHAIN_DESC swapChainDescriptor = CreateSwapChainDescriptor();
 
 				auto idxgiFactory = GetIDXGIFactory();
-				HRESULT result = idxgiFactory->CreateSwapChain(device.Get(), &swapChainDescriptor, &swapChain_);
+				HRESULT result = idxgiFactory->CreateSwapChain(device.Get(), &swapChainDescriptor, &swapChainInterface_);
 
 				ErrorHandler::HandleWindowsError(result, L"Failed to create swap chain");
 			}
@@ -41,8 +41,7 @@ namespace RenderLibrary
 				swapChainDescriptor.BufferCount = 1;
 				swapChainDescriptor.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
 
-				swapChainDescriptor.SampleDesc.Count = 1;
-				swapChainDescriptor.SampleDesc.Quality = 0;
+				swapChainDescriptor.SampleDesc = device_->GetMultiSamplingDescriptor(4);
 
 				swapChainDescriptor.OutputWindow = window_->GetWindowHandle();
 				swapChainDescriptor.Windowed = true;
@@ -78,14 +77,14 @@ namespace RenderLibrary
 
 			void SwapChain::PresentBackBuffer() const
 			{
-				swapChain_->Present(0, 0);
+				swapChainInterface_->Present(0, 0);
 			}
 
 			ComPtr<ID3D11Texture2D> SwapChain::GetBackBuffer() const
 			{
 				ComPtr<ID3D11Texture2D> backBuffer {};
 
-				HRESULT result = swapChain_->GetBuffer(0, IID_ID3D11Texture2D, &backBuffer);
+				HRESULT result = swapChainInterface_->GetBuffer(0, IID_ID3D11Texture2D, &backBuffer);
 
 				return backBuffer;
 			}

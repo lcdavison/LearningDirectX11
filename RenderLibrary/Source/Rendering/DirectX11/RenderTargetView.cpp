@@ -18,14 +18,14 @@ namespace RenderLibrary
 
 				auto backBuffer = swapChain_->GetBackBuffer();
 
-				HRESULT result = device->CreateRenderTargetView(backBuffer.Get(), NULL, &renderTargetView_);
+				HRESULT result = device->CreateRenderTargetView(backBuffer.Get(), NULL, &renderTargetViewInterface_);
 
 				ErrorHandler::HandleWindowsError(result, L"Failed to create render target view");
 			}
 
-			ComPtr<ID3D11RenderTargetView> RenderTargetView::GetView() const
+			ComPtr<ID3D11RenderTargetView> RenderTargetView::GetViewInterface() const
 			{
-				return renderTargetView_;
+				return renderTargetViewInterface_;
 			}
 		}
 	}

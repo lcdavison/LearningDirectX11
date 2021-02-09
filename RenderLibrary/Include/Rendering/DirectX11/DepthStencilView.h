@@ -19,15 +19,15 @@ namespace RenderLibrary
 			{
 				std::shared_ptr<Device> device_;
 
-				ComPtr<ID3D11DepthStencilView> depthStencilView_;
-				ComPtr<ID3D11Texture2D> buffer_;
+				ComPtr<ID3D11DepthStencilView> depthStencilViewInterface_;
+				ComPtr<ID3D11Texture2D> bufferInterface_;
 
 			public:
 				DepthStencilView(std::shared_ptr<Device> device);
 
 				void Create();
 
-				ComPtr<ID3D11DepthStencilView> GetView() const;
+				ComPtr<ID3D11DepthStencilView> GetViewInterface() const;
 
 			private:
 				void CreateBuffer();

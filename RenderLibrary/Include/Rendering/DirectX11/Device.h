@@ -15,13 +15,15 @@ namespace RenderLibrary
 		{
 			class Device
 			{
-				ComPtr<ID3D11Device> device_;
-				ComPtr<ID3D11DeviceContext> deviceContext_;
+				ComPtr<ID3D11Device> deviceInterface_;
+				ComPtr<ID3D11DeviceContext> contextInterface_;
 
 			public:
 				Device();
 
 				void Create();
+
+				DXGI_SAMPLE_DESC GetMultiSamplingDescriptor(int sampleCount) const;
 
 				ComPtr<ID3D11Device> GetDeviceInterface() const;
 				ComPtr<ID3D11DeviceContext> GetContextInterface() const;

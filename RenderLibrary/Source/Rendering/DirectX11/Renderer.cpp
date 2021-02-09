@@ -43,8 +43,8 @@ namespace RenderLibrary
 			{
 				auto deviceContext = device_->GetContextInterface();
 
-				auto renderTargetViews = &(renderTargetView_->GetView());
-				auto depthStencilView = depthStencilView_->GetView();
+				auto renderTargetViews = &(renderTargetView_->GetViewInterface());
+				auto depthStencilView = depthStencilView_->GetViewInterface();
 
 				deviceContext->OMSetRenderTargets(1, renderTargetViews, depthStencilView.Get());
 			}
@@ -83,9 +83,9 @@ namespace RenderLibrary
 				auto deviceContext = device_->GetContextInterface();
 
 				XMFLOAT4 clearColour {0.0f, 1.0f, 0.0f, 1.0f};
-				deviceContext->ClearRenderTargetView(renderTargetView_->GetView().Get(), reinterpret_cast<float*>(&clearColour));
+				deviceContext->ClearRenderTargetView(renderTargetView_->GetViewInterface().Get(), reinterpret_cast<float*>(&clearColour));
 
-				deviceContext->ClearDepthStencilView(depthStencilView_->GetView().Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+				deviceContext->ClearDepthStencilView(depthStencilView_->GetViewInterface().Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 			}
 		}
 	}
