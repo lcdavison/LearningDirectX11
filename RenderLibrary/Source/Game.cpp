@@ -8,15 +8,18 @@ namespace RenderLibrary
 {
 	namespace Game
 	{
-		Game::Game()
-			: Game(std::make_unique<Rendering::DirectX11::Renderer>(),
+		Game::Game(HINSTANCE instance)
+			: Game(instance,
+				   std::make_unique<Rendering::DirectX11::Renderer>(),
 				   std::make_unique<Gameplay::DefaultGameplayUpdater>())
 		{
 		}
 
-		Game::Game(std::unique_ptr<Rendering::BaseRenderer> renderer,
+		Game::Game(HINSTANCE instance,
+				   std::unique_ptr<Rendering::BaseRenderer> renderer,
 				   std::unique_ptr<Gameplay::GameplayUpdater> gameplayUpdater)
-			: renderer_(std::move(renderer)),
+			: instance_(instance),
+			renderer_(std::move(renderer)),
 			gameplayUpdater_(std::move(gameplayUpdater)),
 			isRunning_(false)
 		{
@@ -24,11 +27,13 @@ namespace RenderLibrary
 
 		void Game::Run()
 		{
+			isRunning_ = true;
+
 			Initialise();
 
 			Start();
 
-			while (true)
+			while (isRunning_)
 			{
 				Update();
 				Render();

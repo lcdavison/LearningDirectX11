@@ -26,7 +26,7 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE previousInstance, LPSTR command
 
 	try
 	{
-		Game game;
+		Game game (instance);
 		game.Run();
 	}
 	catch (RenderLibrary::Exception exception)
