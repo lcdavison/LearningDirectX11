@@ -1,5 +1,7 @@
 #pragma once
 
+#include "EventChannel.h"
+
 namespace RenderLibrary
 {
 	namespace EventSystem
@@ -7,7 +9,7 @@ namespace RenderLibrary
 		class EventListener
 		{
 		public:
-
+			virtual void Notify(EventChannel channel) = 0;
 		};
 	}
 }

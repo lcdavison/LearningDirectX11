@@ -7,6 +7,7 @@ namespace RenderLibrary
 	{
 		enum class EventChannel
 		{
+			General,
 			Window
 		};
 	}

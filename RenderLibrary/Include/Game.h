@@ -5,12 +5,15 @@
 #include "Rendering/BaseRenderer.h"
 #include "GameplayUpdater.h"
 #include "ApplicationState.h"
+#include "EventSystem/EventListener.h"
+#include "EventSystem/EventDispatcher.h"
+#include "Services/ServiceRepository.h"
 
 namespace RenderLibrary
 {
 	namespace Game
 	{
-		class Game
+		class Game : public EventSystem::EventListener
 		{
 		protected:
 			HINSTANCE instance_;
@@ -27,6 +30,8 @@ namespace RenderLibrary
 			Game(HINSTANCE instance, std::unique_ptr<Rendering::BaseRenderer> renderer, std::unique_ptr<Gameplay::GameplayUpdater> gameplayUpdater);
 
 			void Run();
+			
+			virtual void Notify(EventSystem::EventChannel channel) override;
 
 		private:
 			virtual void Initialise();
@@ -36,6 +41,10 @@ namespace RenderLibrary
 
 			virtual void Update();
 			virtual void Render();
+
+			virtual void StartServices();
+			virtual void StopServices();
+
 		};
 	}
 }

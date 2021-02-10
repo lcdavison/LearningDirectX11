@@ -52,7 +52,14 @@ namespace RenderLibrary
 
 		void Game::Start()
 		{
+			StartServices();
+
 			renderer_->Start();
+		}
+
+		void Game::StartServices()
+		{
+			Services::ServiceRepository::StartService<EventSystem::EventDispatcher>();
 		}
 
 		void Game::Update()
@@ -69,6 +76,27 @@ namespace RenderLibrary
 
 		void Game::Stop()
 		{
+			StopServices();
+		}
+
+		void Game::StopServices()
+		{
+		}
+
+		void Game::Notify(EventSystem::EventChannel channel)
+		{
+			switch (channel)
+			{
+			case EventSystem::EventChannel::General:
+				throw Exception(L"General channel has received a message");
+				break;
+			case EventSystem::EventChannel::Window:
+				throw Exception(L"Window channel has received a message");
+				break;
+			default:
+				throw Exception(L"Unsupported event channel");
+				break;
+			}
 		}
 	}
 }

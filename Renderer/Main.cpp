@@ -1,12 +1,20 @@
 #include <Windows.h>
 
+#include <memory>
+
 #include "Game.h"
 #include "Window/Window.h"
 #include "Exceptions/Exception.h"
 #include "ApplicationState.h"
+#include "EventSystem/EventDispatcher.h"
+
+#include "Services/ServiceRepository.h"
+#include "Services/TestService.h"
 
 using namespace RenderLibrary::Window;
 using namespace RenderLibrary::Game;
+using namespace RenderLibrary::EventSystem;
+using namespace RenderLibrary::Services;
 
 /*
 	TODO - Make renderer responsible for window
@@ -17,8 +25,9 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE previousInstance, LPSTR command
 {
 	try
 	{
-		Game game (instance);
-		game.Run();
+		auto game = std::make_shared<Game> (instance);
+
+		game->Run();
 	}
 	catch (RenderLibrary::Exception exception)
 	{
