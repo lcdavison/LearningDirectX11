@@ -342,3 +342,5 @@ healthchecksdb
 *.filters
 *.exe
 *.lib
+*.vcxproj
+*.filters
