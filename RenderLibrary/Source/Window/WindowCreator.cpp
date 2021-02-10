@@ -1,4 +1,4 @@
-#include "WindowCreator.h"
+#include "Window/WindowCreator.h"
 
 namespace RenderLibrary
 {
@@ -13,7 +13,7 @@ namespace RenderLibrary
 		{
 		}
 
-		HWND WindowCreator::Create(HINSTANCE instance, int showCommand, const std::wstring& windowTitle) const
+		HWND WindowCreator::Create(HINSTANCE instance, const std::wstring& windowTitle) const
 		{
 			const wchar_t className [] = L"Render Window Class";
 

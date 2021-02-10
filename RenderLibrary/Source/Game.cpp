@@ -1,22 +1,25 @@
 #include "Game.h"
 
-#include "DefaultRenderer.h"
+#include "Rendering/DefaultRenderer.h"
 #include "DefaultGameplayUpdater.h"
-#include "DirectX11Renderer.h"
+#include "Rendering/DirectX11/Renderer.h"
 
 namespace RenderLibrary
 {
 	namespace Game
 	{
-		Game::Game()
-			: Game(std::make_unique<Rendering::DirectX11Renderer>(),
+		Game::Game(HINSTANCE instance)
+			: Game(instance,
+				   std::make_unique<Rendering::DirectX11::Renderer>(),
 				   std::make_unique<Gameplay::DefaultGameplayUpdater>())
 		{
 		}
 
-		Game::Game(std::unique_ptr<Rendering::Renderer> renderer, 
+		Game::Game(HINSTANCE instance,
+				   std::unique_ptr<Rendering::BaseRenderer> renderer,
 				   std::unique_ptr<Gameplay::GameplayUpdater> gameplayUpdater)
-			: renderer_(std::move(renderer)),
+			: instance_(instance),
+			renderer_(std::move(renderer)),
 			gameplayUpdater_(std::move(gameplayUpdater)),
 			isRunning_(false)
 		{
@@ -24,11 +27,13 @@ namespace RenderLibrary
 
 		void Game::Run()
 		{
+			isRunning_ = true;
+
 			Initialise();
 
 			Start();
 
-			while (true)
+			while (isRunning_)
 			{
 				Update();
 				Render();
@@ -39,7 +44,7 @@ namespace RenderLibrary
 
 		void Game::Initialise()
 		{
-			window_ = std::make_shared<Window::Window>(ApplicationState::instance, ApplicationState::showCommand);
+			window_ = std::make_shared<Window::Window>(instance_);
 			window_->MakeVisible();
 
 			renderer_->Initialise(window_);

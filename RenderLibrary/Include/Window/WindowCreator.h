@@ -3,7 +3,7 @@
 #include <Windows.h>
 
 #include <string>
-#include "Exception.h"
+#include "Exceptions/Exception.h"
 
 namespace RenderLibrary
 {
@@ -16,7 +16,7 @@ namespace RenderLibrary
 		public:
 			WindowCreator();
 
-			HWND Create(HINSTANCE instance, int showCommand, const std::wstring& windowTitle) const;
+			HWND Create(HINSTANCE instance, const std::wstring& windowTitle) const;
 
 		private:
 

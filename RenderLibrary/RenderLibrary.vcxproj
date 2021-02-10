@@ -19,33 +19,39 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ApplicationState.h" />
-    <ClInclude Include="DefaultGameplayUpdater.h" />
-    <ClInclude Include="DefaultRenderer.h" />
-    <ClInclude Include="DirectX11Renderer.h" />
-    <ClInclude Include="DirectX11RenderTargetView.h" />
-    <ClInclude Include="ErrorHandler.h" />
-    <ClInclude Include="Exception.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="GameplayUpdater.h" />
-    <ClInclude Include="Module.h" />
-    <ClInclude Include="Renderer.h" />
-    <ClInclude Include="Window.h" />
-    <ClInclude Include="WindowCreator.h" />
-    <ClInclude Include="WindowUpdater.h" />
+    <ClInclude Include="Include\ApplicationState.h" />
+    <ClInclude Include="Include\DefaultGameplayUpdater.h" />
+    <ClInclude Include="Include\Rendering\DefaultRenderer.h" />
+    <ClInclude Include="Include\Rendering\DirectX11\DepthStencilView.h" />
+    <ClInclude Include="Include\Rendering\DirectX11\Device.h" />
+    <ClInclude Include="Include\Rendering\DirectX11\Renderer.h" />
+    <ClInclude Include="Include\Rendering\DirectX11\RenderTargetView.h" />
+    <ClInclude Include="Include\ErrorHandler.h" />
+    <ClInclude Include="Include\Exceptions\Exception.h" />
+    <ClInclude Include="Include\Game.h" />
+    <ClInclude Include="Include\GameplayUpdater.h" />
+    <ClInclude Include="Include\Module.h" />
+    <ClInclude Include="Include\Rendering\BaseRenderer.h" />
+    <ClInclude Include="Include\Rendering\DirectX11\SwapChain.h" />
+    <ClInclude Include="Include\Window\Window.h" />
+    <ClInclude Include="Include\Window\WindowCreator.h" />
+    <ClInclude Include="Include\Window\WindowUpdater.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ApplicationState.cpp" />
-    <ClCompile Include="DefaultGameplayUpdater.cpp" />
-    <ClCompile Include="DefaultRenderer.cpp" />
-    <ClCompile Include="DirectX11Renderer.cpp" />
-    <ClCompile Include="DirectX11RenderTargetView.cpp" />
-    <ClCompile Include="ErrorHandler.cpp" />
-    <ClCompile Include="Exception.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Window.cpp" />
-    <ClCompile Include="WindowCreator.cpp" />
-    <ClCompile Include="WindowUpdater.cpp" />
+    <ClCompile Include="Source\ApplicationState.cpp" />
+    <ClCompile Include="Source\DefaultGameplayUpdater.cpp" />
+    <ClCompile Include="Source\Rendering\DefaultRenderer.cpp" />
+    <ClCompile Include="Source\Rendering\DirectX11\DepthStencilView.cpp" />
+    <ClCompile Include="Source\Rendering\DirectX11\Device.cpp" />
+    <ClCompile Include="Source\Rendering\DirectX11\Renderer.cpp" />
+    <ClCompile Include="Source\Rendering\DirectX11\RenderTargetView.cpp" />
+    <ClCompile Include="Source\ErrorHandler.cpp" />
+    <ClCompile Include="Source\Exceptions\Exception.cpp" />
+    <ClCompile Include="Source\Game.cpp" />
+    <ClCompile Include="Source\Rendering\DirectX11\SwapChain.cpp" />
+    <ClCompile Include="Source\Window\Window.cpp" />
+    <ClCompile Include="Source\Window\WindowCreator.cpp" />
+    <ClCompile Include="Source\Window\WindowUpdater.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -122,6 +128,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)RenderLIbrary\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -143,6 +150,7 @@ copy "$(TargetDir)" "$(SolutionDir)lib"</Command>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)RenderLIbrary\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>

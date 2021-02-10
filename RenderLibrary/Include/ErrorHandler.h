@@ -3,7 +3,7 @@
 #include <Windows.h>
 #include <string>
 
-#include "Exception.h"
+#include "Exceptions/Exception.h"
 
 namespace RenderLibrary
 {

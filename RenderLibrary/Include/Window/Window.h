@@ -17,8 +17,8 @@ namespace RenderLibrary
 			WindowUpdater windowUpdater_;
 
 		public:
-			Window(HINSTANCE instance, int showWindow);
-			Window(HINSTANCE instance, int showWindow, const std::wstring& windowTitle);
+			Window(HINSTANCE instance);
+			Window(HINSTANCE instance, const std::wstring& windowTitle);
 
 			~Window();
 
@@ -29,7 +29,7 @@ namespace RenderLibrary
 			HWND GetWindowHandle() const;
 
 		private:
-			void Create(HINSTANCE instance, int showWindow, const std::wstring& windowTitle);
+			void Create(HINSTANCE instance, const std::wstring& windowTitle);
 
 		};
 	}

@@ -2,7 +2,7 @@
 
 #include <memory>
 
-#include "Renderer.h"
+#include "Rendering/BaseRenderer.h"
 #include "GameplayUpdater.h"
 #include "ApplicationState.h"
 
@@ -13,7 +13,9 @@ namespace RenderLibrary
 		class Game
 		{
 		protected:
-			std::unique_ptr<Rendering::Renderer> renderer_;
+			HINSTANCE instance_;
+
+			std::unique_ptr<Rendering::BaseRenderer> renderer_;
 			std::unique_ptr<Gameplay::GameplayUpdater> gameplayUpdater_;
 
 			std::shared_ptr<Window::Window> window_;
@@ -21,8 +23,8 @@ namespace RenderLibrary
 			bool isRunning_;
 
 		public:
-			Game();
-			Game(std::unique_ptr<Rendering::Renderer> renderer, std::unique_ptr<Gameplay::GameplayUpdater> gameplayUpdater);
+			Game(HINSTANCE instance);
+			Game(HINSTANCE instance, std::unique_ptr<Rendering::BaseRenderer> renderer, std::unique_ptr<Gameplay::GameplayUpdater> gameplayUpdater);
 
 			void Run();
 
