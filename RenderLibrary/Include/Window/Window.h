@@ -2,6 +2,7 @@
 
 #include "WindowCreator.h"
 #include "WindowUpdater.h"
+#include "Module.h"
 
 #include <string>
 
@@ -9,9 +10,11 @@ namespace RenderLibrary
 {
 	namespace Window
 	{
-		class Window
+		class Window : public Module
 		{
 			HWND windowHandle_;
+			HINSTANCE instance_;
+			std::wstring windowTitle_;
 
 			WindowCreator windowCreator_;
 			WindowUpdater windowUpdater_;
@@ -22,15 +25,17 @@ namespace RenderLibrary
 
 			~Window();
 
-			void Update();
+			virtual void Start() override;
+			virtual void Stop() override;
 
-			void MakeVisible() const;
+			void Update();
 
 			HWND GetWindowHandle() const;
 
 		private:
-			void Create(HINSTANCE instance, const std::wstring& windowTitle);
+			void Create();
 
+			void MakeVisible() const;
 		};
 	}
 }

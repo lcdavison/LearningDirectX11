@@ -12,11 +12,14 @@ namespace RenderLibrary
 		{
 			MSG message {};
 
-			while (PeekMessage(&message, windowHandle, 0, 0, PM_REMOVE))
+			while (PeekMessage(&message, NULL, 0, 0, PM_REMOVE))
 			{
+				if (message.message == WM_QUIT)
+					break;
+
 				TranslateMessage(&message);
 				DispatchMessage(&message);
 			}
 		}
-	}	
+	}
 }

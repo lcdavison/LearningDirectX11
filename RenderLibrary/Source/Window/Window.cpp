@@ -9,17 +9,30 @@ namespace RenderLibrary
 		}
 
 		Window::Window(HINSTANCE instance, const std::wstring& windowTitle)
+			: instance_(instance),
+			windowTitle_(windowTitle)
 		{
-			Create(instance, windowTitle);
 		}
 
 		Window::~Window()
 		{
 		}
 
-		void Window::Create(HINSTANCE instance, const std::wstring& windowTitle)
+		void Window::Start()
 		{
-			windowHandle_ = windowCreator_.Create(instance, windowTitle);
+			Create();
+
+			MakeVisible();
+		}
+
+		void Window::Stop()
+		{
+
+		}
+
+		void Window::Create()
+		{
+			windowHandle_ = windowCreator_.Create(instance_, windowTitle_);
 		}
 
 		void Window::Update()

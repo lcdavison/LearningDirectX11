@@ -2,6 +2,8 @@
 
 #include <Windows.h>
 #include <string>
+#include <memory>
+#include <functional>
 
 #include "Exceptions/Exception.h"
 

@@ -9,8 +9,6 @@ namespace RenderLibrary
 {
 	namespace Window
 	{
-		static LRESULT CALLBACK WindowProcedure(HWND windowHandle, UINT message, WPARAM wParameters, LPARAM lParameters);
-
 		class WindowCreator
 		{
 		public:

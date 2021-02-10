@@ -19,10 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Include\ApplicationState.h" />
     <ClInclude Include="Include\DefaultGameplayUpdater.h" />
     <ClInclude Include="Include\EventSystem\EventChannel.h" />
-    <ClInclude Include="Include\EventSystem\EventDispatcher.h" />
+    <ClInclude Include="Include\EventSystem\EventData.h" />
+    <ClInclude Include="Include\Services\EventDispatcher.h" />
     <ClInclude Include="Include\EventSystem\EventListener.h" />
     <ClInclude Include="Include\Rendering\DefaultRenderer.h" />
     <ClInclude Include="Include\Rendering\DirectX11\DepthStencilView.h" />
@@ -43,12 +43,12 @@
     <ClInclude Include="Include\Services\TestService.h" />
     <ClInclude Include="Include\Window\Window.h" />
     <ClInclude Include="Include\Window\WindowCreator.h" />
+    <ClInclude Include="Include\Window\WindowProcedure.h" />
     <ClInclude Include="Include\Window\WindowUpdater.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\ApplicationState.cpp" />
     <ClCompile Include="Source\DefaultGameplayUpdater.cpp" />
-    <ClCompile Include="Source\EventSystem\EventDispatcher.cpp" />
+    <ClCompile Include="Source\Services\EventDispatcher.cpp" />
     <ClCompile Include="Source\Rendering\DefaultRenderer.cpp" />
     <ClCompile Include="Source\Rendering\DirectX11\DepthStencilView.cpp" />
     <ClCompile Include="Source\Rendering\DirectX11\Device.cpp" />
@@ -171,6 +171,10 @@ copy "$(TargetDir)" "$(SolutionDir)lib"</Command>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>mkdir "$(SolutionDir)lib"
+copy "$(TargetDir)" "$(SolutionDir)lib"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

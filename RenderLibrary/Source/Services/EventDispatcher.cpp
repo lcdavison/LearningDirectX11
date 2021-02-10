@@ -1,12 +1,14 @@
-#include "EventSystem/EventDispatcher.h"
+#include "Services/EventDispatcher.h"
+
+using namespace RenderLibrary::EventSystem;
 
 namespace RenderLibrary
 {
-	namespace EventSystem
+	namespace Services
 	{
 		EventDispatcher::EventDispatcher()
 		{
-			serviceId = Services::ServiceID::EventDispatcher;
+			serviceId = ServiceID::EventDispatcher;
 		}
 
 		void EventDispatcher::Start()
@@ -34,7 +36,7 @@ namespace RenderLibrary
 			}
 		}
 
-		void EventDispatcher::PublishToChannel(EventChannel channel)
+		void EventDispatcher::PublishToChannel(EventChannel channel, EventData eventData)
 		{
 			auto iterator = eventChannels_.find(channel);
 

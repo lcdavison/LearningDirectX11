@@ -4,6 +4,9 @@
 #include "DefaultGameplayUpdater.h"
 #include "Rendering/DirectX11/Renderer.h"
 
+using namespace RenderLibrary::Services;
+using namespace RenderLibrary::EventSystem;
+
 namespace RenderLibrary
 {
 	namespace Game
@@ -45,8 +48,7 @@ namespace RenderLibrary
 		void Game::Initialise()
 		{
 			window_ = std::make_shared<Window::Window>(instance_);
-			window_->MakeVisible();
-
+			
 			renderer_->Initialise(window_);
 		}
 
@@ -54,12 +56,17 @@ namespace RenderLibrary
 		{
 			StartServices();
 
+			auto eventDispatcher = ServiceRepository::GetService<EventDispatcher>(ServiceID::EventDispatcher);
+			eventDispatcher->SubscribeToChannel(EventChannel::Window, std::shared_ptr<Game>(this));
+
+			window_->Start();
+
 			renderer_->Start();
 		}
 
 		void Game::StartServices()
 		{
-			Services::ServiceRepository::StartService<EventSystem::EventDispatcher>();
+			Services::ServiceRepository::StartService<Services::EventDispatcher>();
 		}
 
 		void Game::Update()
@@ -85,18 +92,7 @@ namespace RenderLibrary
 
 		void Game::Notify(EventSystem::EventChannel channel)
 		{
-			switch (channel)
-			{
-			case EventSystem::EventChannel::General:
-				throw Exception(L"General channel has received a message");
-				break;
-			case EventSystem::EventChannel::Window:
-				throw Exception(L"Window channel has received a message");
-				break;
-			default:
-				throw Exception(L"Unsupported event channel");
-				break;
-			}
+			//isRunning_ = false;
 		}
 	}
 }

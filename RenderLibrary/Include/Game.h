@@ -4,9 +4,9 @@
 
 #include "Rendering/BaseRenderer.h"
 #include "GameplayUpdater.h"
-#include "ApplicationState.h"
 #include "EventSystem/EventListener.h"
-#include "EventSystem/EventDispatcher.h"
+
+#include "Services/EventDispatcher.h"
 #include "Services/ServiceRepository.h"
 
 namespace RenderLibrary

@@ -5,8 +5,6 @@
 #include "Game.h"
 #include "Window/Window.h"
 #include "Exceptions/Exception.h"
-#include "ApplicationState.h"
-#include "EventSystem/EventDispatcher.h"
 
 #include "Services/ServiceRepository.h"
 #include "Services/TestService.h"
@@ -17,8 +15,9 @@ using namespace RenderLibrary::EventSystem;
 using namespace RenderLibrary::Services;
 
 /*
-	TODO - Make renderer responsible for window
+	TODO - Remove window handle from window updater
 	TODO - Rename Window class to remove ambiguity
+	TODO - Add event data for notification processing
 */
 
 int WINAPI WinMain(HINSTANCE instance, HINSTANCE previousInstance, LPSTR commandLine, INT showCommand)
@@ -28,10 +27,12 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE previousInstance, LPSTR command
 		auto game = std::make_shared<Game> (instance);
 
 		game->Run();
+
+		throw RenderLibrary::Exception(L"Finished");
 	}
 	catch (RenderLibrary::Exception exception)
 	{
-		MessageBox(NULL, exception.GetErrorMessage().c_str(), L"Fatal Error", MB_OK);
+		MessageBox(NULL, exception.GetErrorMessage().c_str(), L"Exception Thrown", MB_OK);
 	}
 
 	return 0;

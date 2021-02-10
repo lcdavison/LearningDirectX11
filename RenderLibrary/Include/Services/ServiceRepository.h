@@ -52,7 +52,7 @@ namespace RenderLibrary
 		{
 			auto service = services_.at(serviceId);
 
-			return std::dynamic_pointer_cast<T> (service);
+			return std::dynamic_pointer_cast<T>(service);
 		}
 	}
 }

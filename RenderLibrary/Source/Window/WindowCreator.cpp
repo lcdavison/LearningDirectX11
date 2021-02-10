@@ -1,14 +1,10 @@
 #include "Window/WindowCreator.h"
+#include "Window/WindowProcedure.h"
 
 namespace RenderLibrary
 {
 	namespace Window
 	{
-		static LRESULT CALLBACK WindowProcedure(HWND windowHandle, UINT message, WPARAM wParameters, LPARAM lParameters)
-		{
-			return DefWindowProc(windowHandle, message, wParameters, lParameters);
-		}
-
 		WindowCreator::WindowCreator()
 		{
 		}
