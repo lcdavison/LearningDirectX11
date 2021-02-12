@@ -19,33 +19,54 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ApplicationState.h" />
-    <ClInclude Include="DefaultGameplayUpdater.h" />
-    <ClInclude Include="DefaultRenderer.h" />
-    <ClInclude Include="DirectX11Renderer.h" />
-    <ClInclude Include="DirectX11RenderTargetView.h" />
-    <ClInclude Include="ErrorHandler.h" />
-    <ClInclude Include="Exception.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="GameplayUpdater.h" />
-    <ClInclude Include="Module.h" />
-    <ClInclude Include="Renderer.h" />
-    <ClInclude Include="Window.h" />
-    <ClInclude Include="WindowCreator.h" />
-    <ClInclude Include="WindowUpdater.h" />
+    <ClInclude Include="Include\DefaultGameplayUpdater.h" />
+    <ClInclude Include="Include\EventSystem\BaseEventHandler.h" />
+    <ClInclude Include="Include\EventSystem\EventChannel.h" />
+    <ClInclude Include="Include\EventSystem\Event.h" />
+    <ClInclude Include="Include\EventSystem\EventHandler.h" />
+    <ClInclude Include="Include\EventSystem\WindowEvent.h" />
+    <ClInclude Include="Include\Services\EventDispatcher.h" />
+    <ClInclude Include="Include\EventSystem\EventListener.h" />
+    <ClInclude Include="Include\Rendering\DefaultRenderer.h" />
+    <ClInclude Include="Include\Rendering\DirectX11\DepthStencilView.h" />
+    <ClInclude Include="Include\Rendering\DirectX11\Device.h" />
+    <ClInclude Include="Include\Rendering\DirectX11\Renderer.h" />
+    <ClInclude Include="Include\Rendering\DirectX11\RenderTargetView.h" />
+    <ClInclude Include="Include\ErrorHandler.h" />
+    <ClInclude Include="Include\Exceptions\Exception.h" />
+    <ClInclude Include="Include\Game.h" />
+    <ClInclude Include="Include\GameplayUpdater.h" />
+    <ClInclude Include="Include\Module.h" />
+    <ClInclude Include="Include\Rendering\BaseRenderer.h" />
+    <ClInclude Include="Include\Rendering\DirectX11\SwapChain.h" />
+    <ClInclude Include="Include\Rendering\ShaderRepository.h" />
+    <ClInclude Include="Include\Services\Service.h" />
+    <ClInclude Include="Include\Services\ServiceID.h" />
+    <ClInclude Include="Include\Services\ServiceRepository.h" />
+    <ClInclude Include="Include\Services\TestService.h" />
+    <ClInclude Include="Include\Window\Window.h" />
+    <ClInclude Include="Include\Window\WindowCreator.h" />
+    <ClInclude Include="Include\Window\WindowProcedure.h" />
+    <ClInclude Include="Include\Window\WindowUpdater.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ApplicationState.cpp" />
-    <ClCompile Include="DefaultGameplayUpdater.cpp" />
-    <ClCompile Include="DefaultRenderer.cpp" />
-    <ClCompile Include="DirectX11Renderer.cpp" />
-    <ClCompile Include="DirectX11RenderTargetView.cpp" />
-    <ClCompile Include="ErrorHandler.cpp" />
-    <ClCompile Include="Exception.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Window.cpp" />
-    <ClCompile Include="WindowCreator.cpp" />
-    <ClCompile Include="WindowUpdater.cpp" />
+    <ClCompile Include="Source\DefaultGameplayUpdater.cpp" />
+    <ClCompile Include="Source\Services\EventDispatcher.cpp" />
+    <ClCompile Include="Source\Rendering\DefaultRenderer.cpp" />
+    <ClCompile Include="Source\Rendering\DirectX11\DepthStencilView.cpp" />
+    <ClCompile Include="Source\Rendering\DirectX11\Device.cpp" />
+    <ClCompile Include="Source\Rendering\DirectX11\Renderer.cpp" />
+    <ClCompile Include="Source\Rendering\DirectX11\RenderTargetView.cpp" />
+    <ClCompile Include="Source\ErrorHandler.cpp" />
+    <ClCompile Include="Source\Exceptions\Exception.cpp" />
+    <ClCompile Include="Source\Game.cpp" />
+    <ClCompile Include="Source\Rendering\DirectX11\SwapChain.cpp" />
+    <ClCompile Include="Source\Services\Service.cpp" />
+    <ClCompile Include="Source\Services\ServiceRepository.cpp" />
+    <ClCompile Include="Source\Services\TestService.cpp" />
+    <ClCompile Include="Source\Window\Window.cpp" />
+    <ClCompile Include="Source\Window\WindowCreator.cpp" />
+    <ClCompile Include="Source\Window\WindowUpdater.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -122,6 +143,8 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)RenderLIbrary\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -143,6 +166,8 @@ copy "$(TargetDir)" "$(SolutionDir)lib"</Command>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)RenderLIbrary\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -151,6 +176,10 @@ copy "$(TargetDir)" "$(SolutionDir)lib"</Command>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>mkdir "$(SolutionDir)lib"
+copy "$(TargetDir)" "$(SolutionDir)lib"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
