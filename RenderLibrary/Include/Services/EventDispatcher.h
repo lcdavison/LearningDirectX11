@@ -1,8 +1,10 @@
 #pragma once
 
 #include "EventSystem/EventListener.h"
+#include "EventSystem/EventHandler.h"
 #include "EventSystem/EventChannel.h"
-#include "EventSystem/EventData.h"
+#include "EventSystem/Event.h"
+
 #include "Services/Service.h"
 
 #include <unordered_map>
@@ -15,7 +17,7 @@ namespace RenderLibrary
 	{
 		class EventDispatcher : public Services::Service
 		{
-			std::unordered_map<EventSystem::EventChannel, std::vector<std::shared_ptr<EventSystem::EventListener>>> eventChannels_;
+			std::unordered_map<EventSystem::EventChannel, std::vector<std::shared_ptr<EventSystem::BaseEventHandler>>> eventChannels_;
 
 		public:
 			EventDispatcher();
@@ -23,8 +25,9 @@ namespace RenderLibrary
 			virtual void Start() override;
 			virtual void Stop() override;
 
-			void SubscribeToChannel(EventSystem::EventChannel channel, std::shared_ptr<EventSystem::EventListener> eventListener);
-			void PublishToChannel(EventSystem::EventChannel channel, EventSystem::EventData eventData);
+			void SubscribeToChannel(EventSystem::EventChannel channel, std::shared_ptr<EventSystem::BaseEventHandler> eventHandler);
+
+			void PublishToChannel(EventSystem::EventChannel channel, std::shared_ptr<EventSystem::Event> eventData);
 
 		};
 	}

@@ -4,7 +4,9 @@
 
 #include "Rendering/BaseRenderer.h"
 #include "GameplayUpdater.h"
-#include "EventSystem/EventListener.h"
+
+#include "EventSystem/WindowEvent.h"
+#include "EventSystem/EventHandler.h"
 
 #include "Services/EventDispatcher.h"
 #include "Services/ServiceRepository.h"
@@ -13,7 +15,7 @@ namespace RenderLibrary
 {
 	namespace Game
 	{
-		class Game : public EventSystem::EventListener
+		class Game
 		{
 		protected:
 			HINSTANCE instance_;
@@ -31,8 +33,6 @@ namespace RenderLibrary
 
 			void Run();
 			
-			virtual void Notify(EventSystem::EventChannel channel) override;
-
 		private:
 			virtual void Initialise();
 
@@ -45,6 +45,8 @@ namespace RenderLibrary
 			virtual void StartServices();
 			virtual void StopServices();
 
+			void SetupEventHandlers();
+			virtual void OnWindowEvent(std::shared_ptr<EventSystem::WindowEvent> eventData);
 		};
 	}
 }

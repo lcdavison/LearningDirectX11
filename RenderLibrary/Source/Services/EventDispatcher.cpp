@@ -13,40 +13,38 @@ namespace RenderLibrary
 
 		void EventDispatcher::Start()
 		{
-
 		}
 
 		void EventDispatcher::Stop()
 		{
-
 		}
 
-		void EventDispatcher::SubscribeToChannel(EventChannel channel, std::shared_ptr<EventListener> eventListener)
+		void EventDispatcher::SubscribeToChannel(EventChannel channel, std::shared_ptr<BaseEventHandler> eventHandler)
 		{
 			auto iterator = eventChannels_.find(channel);
 
 			if (iterator != eventChannels_.end())
 			{
-				auto& listeners = iterator->second;
-				listeners.push_back(eventListener);
+				auto& handlers = iterator->second;
+				handlers.push_back(eventHandler);
 			}
 			else
 			{
-				eventChannels_.insert({channel, { eventListener }});
+				eventChannels_.insert({channel, { eventHandler }});
 			}
 		}
 
-		void EventDispatcher::PublishToChannel(EventChannel channel, EventData eventData)
+		void EventDispatcher::PublishToChannel(EventChannel channel, std::shared_ptr<Event> eventData)
 		{
 			auto iterator = eventChannels_.find(channel);
 
 			if (iterator != eventChannels_.end())
 			{
-				auto& listeners = iterator->second;
+				auto& handlers = iterator->second;
 
-				for (auto listener : listeners)
+				for (auto handler : handlers)
 				{
-					listener->Notify(channel);
+					(*handler)(eventData);
 				}
 			}
 		}

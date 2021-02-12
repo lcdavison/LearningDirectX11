@@ -56,8 +56,7 @@ namespace RenderLibrary
 		{
 			StartServices();
 
-			auto eventDispatcher = ServiceRepository::GetService<EventDispatcher>(ServiceID::EventDispatcher);
-			eventDispatcher->SubscribeToChannel(EventChannel::Window, std::shared_ptr<Game>(this));
+			SetupEventHandlers();
 
 			window_->Start();
 
@@ -67,6 +66,14 @@ namespace RenderLibrary
 		void Game::StartServices()
 		{
 			Services::ServiceRepository::StartService<Services::EventDispatcher>();
+		}
+
+		void Game::SetupEventHandlers()
+		{
+			auto eventDispatcher = ServiceRepository::GetService<EventDispatcher>(ServiceID::EventDispatcher);
+
+			auto windowEventHandler = std::make_shared<EventHandler<WindowEvent>>(std::bind(&Game::OnWindowEvent, this, std::placeholders::_1));
+			eventDispatcher->SubscribeToChannel(EventChannel::Window, windowEventHandler);
 		}
 
 		void Game::Update()
@@ -90,9 +97,12 @@ namespace RenderLibrary
 		{
 		}
 
-		void Game::Notify(EventSystem::EventChannel channel)
+		void Game::OnWindowEvent(std::shared_ptr<WindowEvent> eventData)
 		{
-			//isRunning_ = false;
+			if (eventData->HasWindowClosed)
+			{
+				isRunning_ = false;
+			}
 		}
 	}
 }

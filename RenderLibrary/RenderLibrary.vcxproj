@@ -20,8 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\DefaultGameplayUpdater.h" />
+    <ClInclude Include="Include\EventSystem\BaseEventHandler.h" />
     <ClInclude Include="Include\EventSystem\EventChannel.h" />
-    <ClInclude Include="Include\EventSystem\EventData.h" />
+    <ClInclude Include="Include\EventSystem\Event.h" />
+    <ClInclude Include="Include\EventSystem\EventHandler.h" />
+    <ClInclude Include="Include\EventSystem\WindowEvent.h" />
     <ClInclude Include="Include\Services\EventDispatcher.h" />
     <ClInclude Include="Include\EventSystem\EventListener.h" />
     <ClInclude Include="Include\Rendering\DefaultRenderer.h" />
@@ -141,6 +144,7 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(SolutionDir)RenderLIbrary\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -163,6 +167,7 @@ copy "$(TargetDir)" "$(SolutionDir)lib"</Command>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(SolutionDir)RenderLIbrary\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>

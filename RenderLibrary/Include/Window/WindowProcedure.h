@@ -2,6 +2,8 @@
 
 #include <Windows.h>
 
+#include "EventSystem/WindowEvent.h"
+
 #include "Services/ServiceRepository.h"
 #include "Services/EventDispatcher.h"
 
@@ -11,7 +13,19 @@ namespace RenderLibrary
 	{
 		static auto GetEventDispatcher()
 		{
-			return Services::ServiceRepository::GetService<Services::EventDispatcher>(Services::ServiceID::EventDispatcher);
+			using namespace RenderLibrary::Services;
+
+			return ServiceRepository::GetService<EventDispatcher>(ServiceID::EventDispatcher);
+		}
+
+		static void PublishWindowEvent(EventSystem::WindowEvent&& windowEvent)
+		{
+			using namespace RenderLibrary::EventSystem;
+
+			auto eventDispatcher = GetEventDispatcher();
+
+			auto windowEventPointer = std::make_shared<WindowEvent>(windowEvent);
+			eventDispatcher->PublishToChannel(EventChannel::Window, windowEventPointer);
 		}
 
 		static LRESULT CALLBACK WindowProcedure(HWND windowHandle, UINT message, WPARAM wParameters, LPARAM lParameters)
@@ -20,15 +34,16 @@ namespace RenderLibrary
 			{
 			case WM_SIZE:
 			{
-				auto eventDispatcher = GetEventDispatcher();
-				eventDispatcher->PublishToChannel(EventSystem::EventChannel::Window, {});
+				auto width = LOWORD(lParameters);
+				auto height = HIWORD(lParameters);
+
+				PublishWindowEvent({false, width, height});
 
 				break;
 			}
 			case WM_DESTROY:
 			{
-				auto eventDispatcher = GetEventDispatcher();
-				eventDispatcher->PublishToChannel(EventSystem::EventChannel::Window, {});
+				PublishWindowEvent({true, 0, 0});
 
 				return 0;
 			}

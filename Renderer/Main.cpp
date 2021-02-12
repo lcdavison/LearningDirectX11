@@ -17,7 +17,7 @@ using namespace RenderLibrary::Services;
 /*
 	TODO - Remove window handle from window updater
 	TODO - Rename Window class to remove ambiguity
-	TODO - Add event data for notification processing
+	TODO - Re-design service repository
 */
 
 int WINAPI WinMain(HINSTANCE instance, HINSTANCE previousInstance, LPSTR commandLine, INT showCommand)
