@@ -2,7 +2,8 @@
 
 #include <Windows.h>
 
-#include "EventSystem/WindowEvent.h"
+#include "EventSystem/Events/WindowEvent.h"
+#include "EventSystem/EventRegistry.h"
 
 #include "Services/ServiceRepository.h"
 #include "Services/EventDispatcher.h"
@@ -18,7 +19,7 @@ namespace RenderLibrary
 			return ServiceRepository::GetService<EventDispatcher>(ServiceID::EventDispatcher);
 		}
 
-		static void PublishWindowEvent(EventSystem::WindowEvent&& windowEvent)
+		static void PublishWindowEvent(const EventSystem::WindowEvent& windowEvent)
 		{
 			using namespace RenderLibrary::EventSystem;
 
@@ -37,13 +38,25 @@ namespace RenderLibrary
 				auto width = LOWORD(lParameters);
 				auto height = HIWORD(lParameters);
 
+				using namespace EventSystem;
+				auto windowEvent = EventRegistry::CloneEvent<WindowEvent>();
+
+				windowEvent.HasWindowClosed = false;
+				windowEvent.NewWidth = width;
+				windowEvent.NewHeight = height;
+
 				PublishWindowEvent({false, width, height});
 
 				break;
 			}
 			case WM_DESTROY:
 			{
-				PublishWindowEvent({true, 0, 0});
+				using namespace EventSystem;
+				auto windowEvent = EventRegistry::CloneEvent<WindowEvent>();
+
+				windowEvent.HasWindowClosed = true;
+
+				PublishWindowEvent(windowEvent);
 
 				return 0;
 			}

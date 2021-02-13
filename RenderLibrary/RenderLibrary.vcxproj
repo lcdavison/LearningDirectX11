@@ -22,9 +22,10 @@
     <ClInclude Include="Include\DefaultGameplayUpdater.h" />
     <ClInclude Include="Include\EventSystem\BaseEventHandler.h" />
     <ClInclude Include="Include\EventSystem\EventChannel.h" />
-    <ClInclude Include="Include\EventSystem\Event.h" />
+    <ClInclude Include="Include\EventSystem\EventRegistry.h" />
+    <ClInclude Include="Include\EventSystem\Events\Event.h" />
     <ClInclude Include="Include\EventSystem\EventHandler.h" />
-    <ClInclude Include="Include\EventSystem\WindowEvent.h" />
+    <ClInclude Include="Include\EventSystem\Events\WindowEvent.h" />
     <ClInclude Include="Include\Services\EventDispatcher.h" />
     <ClInclude Include="Include\EventSystem\EventListener.h" />
     <ClInclude Include="Include\Rendering\DefaultRenderer.h" />
@@ -51,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\DefaultGameplayUpdater.cpp" />
+    <ClCompile Include="Source\EventSystem\EventRegistry.cpp" />
     <ClCompile Include="Source\Services\EventDispatcher.cpp" />
     <ClCompile Include="Source\Rendering\DefaultRenderer.cpp" />
     <ClCompile Include="Source\Rendering\DirectX11\DepthStencilView.cpp" />
@@ -153,8 +155,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir "$(SolutionDir)lib"
-copy "$(TargetDir)" "$(SolutionDir)lib"</Command>
+      <Command>mkdir "$(SolutionDir)$(Platform)\lib"
+copy "$(TargetDir)" "$(SolutionDir)$(Platform)\lib"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -178,8 +180,8 @@ copy "$(TargetDir)" "$(SolutionDir)lib"</Command>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir "$(SolutionDir)lib"
-copy "$(TargetDir)" "$(SolutionDir)lib"</Command>
+      <Command>mkdir "$(SolutionDir)$(Platform)\lib"
+copy "$(TargetDir)" "$(SolutionDir)$(Platform)\lib"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -200,8 +202,8 @@ copy "$(TargetDir)" "$(SolutionDir)lib"</Command>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir "$(SolutionDir)lib"
-copy "$(TargetDir)" "$(SolutionDir)lib"</Command>
+      <Command>mkdir "$(SolutionDir)$(Platform)\lib"
+copy "$(TargetDir)" "$(SolutionDir)$(Platform)\lib"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -226,8 +228,8 @@ copy "$(TargetDir)" "$(SolutionDir)lib"</Command>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir "$(SolutionDir)lib"
-copy "$(TargetDir)" "$(SolutionDir)lib"</Command>
+      <Command>mkdir "$(SolutionDir)$(Platform)\lib"
+copy "$(TargetDir)" "$(SolutionDir)$(Platform)\lib"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

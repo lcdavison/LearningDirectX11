@@ -3,7 +3,7 @@
 #include "EventSystem/EventListener.h"
 #include "EventSystem/EventHandler.h"
 #include "EventSystem/EventChannel.h"
-#include "EventSystem/Event.h"
+#include "EventSystem/Events/Event.h"
 
 #include "Services/Service.h"
 

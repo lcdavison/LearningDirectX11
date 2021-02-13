@@ -13,11 +13,17 @@ namespace RenderLibrary
 
 			bool HasWindowClosed;
 
+			WindowEvent()
+			{
+				channel = EventChannel::Window;
+			}
+
 			WindowEvent(bool hasWindowClosed, int newWidth, int newHeight)
 				: HasWindowClosed(hasWindowClosed),
 				NewWidth(newWidth),
 				NewHeight(newHeight)
 			{
+				channel = EventChannel::Window;
 			}
 		};
 	}

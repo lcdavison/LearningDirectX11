@@ -5,7 +5,8 @@
 #include "Rendering/BaseRenderer.h"
 #include "GameplayUpdater.h"
 
-#include "EventSystem/WindowEvent.h"
+#include "EventSystem/EventRegistry.h"
+#include "EventSystem/Events/WindowEvent.h"
 #include "EventSystem/EventHandler.h"
 
 #include "Services/EventDispatcher.h"
@@ -45,6 +46,7 @@ namespace RenderLibrary
 			virtual void StartServices();
 			virtual void StopServices();
 
+			void SetupEventPrototypes();
 			void SetupEventHandlers();
 			virtual void OnWindowEvent(std::shared_ptr<EventSystem::WindowEvent> eventData);
 		};

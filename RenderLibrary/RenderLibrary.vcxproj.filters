@@ -132,10 +132,13 @@
     <ClInclude Include="Include\EventSystem\BaseEventHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\EventSystem\Event.h">
+    <ClInclude Include="Include\EventSystem\Events\Event.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\EventSystem\WindowEvent.h">
+    <ClInclude Include="Include\EventSystem\Events\WindowEvent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\EventSystem\EventRegistry.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -189,6 +192,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Services\EventDispatcher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EventSystem\EventRegistry.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

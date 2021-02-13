@@ -27,8 +27,6 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE previousInstance, LPSTR command
 		auto game = std::make_shared<Game> (instance);
 
 		game->Run();
-
-		throw RenderLibrary::Exception(L"Finished");
 	}
 	catch (RenderLibrary::Exception exception)
 	{

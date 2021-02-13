@@ -47,9 +47,18 @@ namespace RenderLibrary
 
 		void Game::Initialise()
 		{
+			SetupEventPrototypes();
+
 			window_ = std::make_shared<Window::Window>(instance_);
 			
 			renderer_->Initialise(window_);
+		}
+
+		void Game::SetupEventPrototypes()
+		{
+			using namespace EventSystem;
+
+			EventRegistry::CreateAndRegisterEvent<WindowEvent>();
 		}
 
 		void Game::Start()
