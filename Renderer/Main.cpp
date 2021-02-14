@@ -15,6 +15,7 @@ using namespace RenderLibrary::EventSystem;
 using namespace RenderLibrary::Services;
 
 /*
+	TODO - Make sure exceptions are thrown where necessary
 	TODO - Remove window handle from window updater
 	TODO - Rename Window class to remove ambiguity
 	TODO - Re-design service repository

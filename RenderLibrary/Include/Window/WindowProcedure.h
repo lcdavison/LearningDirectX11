@@ -26,7 +26,7 @@ namespace RenderLibrary
 			auto eventDispatcher = GetEventDispatcher();
 
 			auto windowEventPointer = std::make_shared<WindowEvent>(windowEvent);
-			eventDispatcher->PublishToChannel(EventChannel::Window, windowEventPointer);
+			eventDispatcher->PublishEvent(windowEventPointer);
 		}
 
 		static LRESULT CALLBACK WindowProcedure(HWND windowHandle, UINT message, WPARAM wParameters, LPARAM lParameters)

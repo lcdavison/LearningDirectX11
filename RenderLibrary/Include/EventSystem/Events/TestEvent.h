@@ -1,14 +1,14 @@
 #pragma once
 
+#include "Event.h"
 
 namespace RenderLibrary
 {
 	namespace EventSystem
 	{
-		enum class EventChannel
+		struct TestEvent : public Event
 		{
-			General,
-			Window
+
 		};
 	}
 }

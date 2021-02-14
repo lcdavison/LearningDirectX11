@@ -8,8 +8,6 @@ namespace RenderLibrary
 	{
 		struct Event
 		{
-		protected:
-			EventChannel channel;
 		};
 	}
 }

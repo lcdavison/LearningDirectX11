@@ -17,7 +17,7 @@ namespace RenderLibrary
 	{
 		class EventDispatcher : public Services::Service
 		{
-			std::unordered_map<EventSystem::EventChannel, std::vector<std::shared_ptr<EventSystem::BaseEventHandler>>> eventChannels_;
+			std::unordered_map<std::size_t, std::vector<std::shared_ptr<EventSystem::BaseEventHandler>>> eventChannels_;
 
 		public:
 			EventDispatcher();
@@ -25,10 +25,46 @@ namespace RenderLibrary
 			virtual void Start() override;
 			virtual void Stop() override;
 
-			void SubscribeToChannel(EventSystem::EventChannel channel, std::shared_ptr<EventSystem::BaseEventHandler> eventHandler);
+			template<typename EventType>
+			void SubscribeToEvent(std::shared_ptr<EventSystem::BaseEventHandler> eventHandler);
 
-			void PublishToChannel(EventSystem::EventChannel channel, std::shared_ptr<EventSystem::Event> eventData);
+			template<typename EventType>
+			void PublishEvent(std::shared_ptr<EventType> eventData);
 
 		};
+
+		template<class EventType>
+		void EventDispatcher::SubscribeToEvent(std::shared_ptr<EventSystem::BaseEventHandler> eventHandler)
+		{
+			auto hashCode = typeid(EventType).hash_code();
+			auto iterator = eventChannels_.find(hashCode);
+
+			if (iterator != eventChannels_.end())
+			{
+				auto& handlers = iterator->second;
+				handlers.push_back(eventHandler);
+			}
+			else
+			{
+				eventChannels_.insert({hashCode, { eventHandler }});
+			}
+		}
+
+		template<class EventType>
+		void EventDispatcher::PublishEvent(std::shared_ptr<EventType> eventData)
+		{
+			auto hashCode = typeid(EventType).hash_code();
+			auto iterator = eventChannels_.find(hashCode);
+
+			if (iterator != eventChannels_.end())
+			{
+				auto& handlers = iterator->second;
+
+				for (auto handler : handlers)
+				{
+					(*handler)(eventData);
+				}
+			}
+		}
 	}
 }

@@ -82,7 +82,7 @@ namespace RenderLibrary
 			auto eventDispatcher = ServiceRepository::GetService<EventDispatcher>(ServiceID::EventDispatcher);
 
 			auto windowEventHandler = std::make_shared<EventHandler<WindowEvent>>(std::bind(&Game::OnWindowEvent, this, std::placeholders::_1));
-			eventDispatcher->SubscribeToChannel(EventChannel::Window, windowEventHandler);
+			eventDispatcher->SubscribeToEvent<WindowEvent>(windowEventHandler);
 		}
 
 		void Game::Update()
