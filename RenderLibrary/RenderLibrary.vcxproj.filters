@@ -99,12 +99,6 @@
     <ClInclude Include="Include\Rendering\DirectX11\SwapChain.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\EventSystem\EventChannel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\EventSystem\EventListener.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Include\Rendering\ShaderRepository.h">
       <Filter>Header Files</Filter>
     </ClInclude>

@@ -1,7 +1,5 @@
 #pragma once
 
-#include "EventSystem/EventChannel.h"
-
 namespace RenderLibrary
 {
 	namespace EventSystem

@@ -21,14 +21,12 @@
   <ItemGroup>
     <ClInclude Include="Include\DefaultGameplayUpdater.h" />
     <ClInclude Include="Include\EventSystem\BaseEventHandler.h" />
-    <ClInclude Include="Include\EventSystem\EventChannel.h" />
     <ClInclude Include="Include\EventSystem\EventRegistry.h" />
     <ClInclude Include="Include\EventSystem\Events\Event.h" />
     <ClInclude Include="Include\EventSystem\EventHandler.h" />
     <ClInclude Include="Include\EventSystem\Events\TestEvent.h" />
     <ClInclude Include="Include\EventSystem\Events\WindowEvent.h" />
     <ClInclude Include="Include\Services\EventDispatcher.h" />
-    <ClInclude Include="Include\EventSystem\EventListener.h" />
     <ClInclude Include="Include\Rendering\DefaultRenderer.h" />
     <ClInclude Include="Include\Rendering\DirectX11\DepthStencilView.h" />
     <ClInclude Include="Include\Rendering\DirectX11\Device.h" />

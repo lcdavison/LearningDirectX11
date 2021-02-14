@@ -1,8 +1,6 @@
 #pragma once
 
-#include "EventSystem/EventListener.h"
 #include "EventSystem/EventHandler.h"
-#include "EventSystem/EventChannel.h"
 #include "EventSystem/Events/Event.h"
 
 #include "Services/Service.h"
