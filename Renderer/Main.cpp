@@ -33,6 +33,10 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE previousInstance, LPSTR command
 	{
 		MessageBox(NULL, exception.GetErrorMessage().c_str(), L"Exception Thrown", MB_OK);
 	}
+	catch (...)
+	{
+		MessageBox(NULL, L"Unhandled Exception", L"Exception Thrown", MB_OK);
+	}
 
 	return 0;
 }

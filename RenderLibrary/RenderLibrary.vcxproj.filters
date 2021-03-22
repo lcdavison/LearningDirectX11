@@ -126,16 +126,16 @@
     <ClInclude Include="Include\EventSystem\BaseEventHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\EventSystem\Events\Event.h">
+    <ClInclude Include="Include\EventSystem\EventRegistry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\EventSystem\Events\TestEvent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Include\EventSystem\Events\WindowEvent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\EventSystem\EventRegistry.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\EventSystem\Events\TestEvent.h">
+    <ClInclude Include="Include\EventSystem\Events\Event.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
