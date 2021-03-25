@@ -9,7 +9,6 @@
 #include "Services/ServiceRepository.h"
 #include "Services/TestService.h"
 
-using namespace RenderLibrary::Window;
 using namespace RenderLibrary::Game;
 using namespace RenderLibrary::EventSystem;
 using namespace RenderLibrary::Services;
@@ -17,17 +16,18 @@ using namespace RenderLibrary::Services;
 /*
 	TODO - Make sure exceptions are thrown where necessary
 	TODO - Remove window handle from window updater
-	TODO - Rename Window class to remove ambiguity
 	TODO - Re-design service repository
+	TODO - Load shaders from binary files
+	TODO - Abstraction of input layout for vertex shaders
 */
 
 int WINAPI WinMain(HINSTANCE instance, HINSTANCE previousInstance, LPSTR commandLine, INT showCommand)
 {
 	try
 	{
-		auto game = std::make_shared<Game> (instance);
+		auto game = std::make_shared<Win32Game> (instance);
 
-		game->Run();
+		return game->Run();
 	}
 	catch (RenderLibrary::Exception exception)
 	{

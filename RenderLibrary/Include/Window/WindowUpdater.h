@@ -2,16 +2,13 @@
 
 #include <Windows.h>
 
-namespace RenderLibrary
+namespace RenderLibrary::System
 {
-	namespace Window
+	class WindowUpdater
 	{
-		class WindowUpdater
-		{
-		public:
-			WindowUpdater();
+	public:
+		WindowUpdater();
 
-			void Update(HWND windowHandle);
-		};
-	}
+		void Update(HWND windowHandle);
+	};
 }

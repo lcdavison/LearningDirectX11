@@ -8,7 +8,8 @@ namespace RenderLibrary
 		{
 			Unassigned,
 			Test,
-			EventDispatcher
+			EventDispatcher,
+			GPUAllocator
 		};
 	}
 }

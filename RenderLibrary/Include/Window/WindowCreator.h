@@ -5,20 +5,17 @@
 #include <string>
 #include "Exceptions/Exception.h"
 
-namespace RenderLibrary
+namespace RenderLibrary::System
 {
-	namespace Window
+	class WindowCreator
 	{
-		class WindowCreator
-		{
-		public:
-			WindowCreator();
+	public:
+		WindowCreator();
 
-			HWND Create(HINSTANCE instance, const std::wstring& windowTitle) const;
+		HWND Create(HINSTANCE instance, const std::wstring& windowTitle) const;
 
-		private:
+	private:
 
-			void CreateAndRegisterWindowClass(const std::wstring& className, HINSTANCE instance) const;
-		};
-	}
+		void CreateAndRegisterWindowClass(const std::wstring& className, HINSTANCE instance) const;
+	};
 }

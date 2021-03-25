@@ -2,6 +2,8 @@
 
 #include <memory>
 
+#include "Application.h"
+
 #include "Rendering/BaseRenderer.h"
 #include "GameplayUpdater.h"
 
@@ -12,43 +14,41 @@
 #include "Services/EventDispatcher.h"
 #include "Services/ServiceRepository.h"
 
-namespace RenderLibrary
+namespace RenderLibrary::Game
 {
-	namespace Game
+	class Win32Game : public Application
 	{
-		class Game
-		{
-		protected:
-			HINSTANCE instance_;
+	protected:
+		HINSTANCE instance_;
 
-			std::unique_ptr<Rendering::BaseRenderer> renderer_;
-			std::unique_ptr<Gameplay::GameplayUpdater> gameplayUpdater_;
+		std::unique_ptr<Rendering::BaseRenderer> renderer_;
+		std::unique_ptr<Gameplay::GameplayUpdater> gameplayUpdater_;
 
-			std::shared_ptr<Window::Window> window_;
+		std::shared_ptr<Window> window_;
 
-			bool isRunning_;
+		bool isRunning_;
 
-		public:
-			Game(HINSTANCE instance);
-			Game(HINSTANCE instance, std::unique_ptr<Rendering::BaseRenderer> renderer, std::unique_ptr<Gameplay::GameplayUpdater> gameplayUpdater);
+	public:
+		Win32Game(HINSTANCE instance);
+		Win32Game(HINSTANCE instance, std::unique_ptr<Rendering::BaseRenderer> renderer, std::unique_ptr<Gameplay::GameplayUpdater> gameplayUpdater);
 
-			void Run();
-			
-		private:
-			virtual void Initialise();
+		virtual int Run() override;
 
-			virtual void Start();
-			virtual void Stop();
+	private:
+		virtual void Initialise();
 
-			virtual void Update();
-			virtual void Render();
+		virtual void Start();
+		virtual void Stop();
 
-			virtual void StartServices();
-			virtual void StopServices();
+		virtual void Update();
+		virtual void Render();
 
-			void SetupEventPrototypes();
-			void SetupEventHandlers();
-			virtual void OnWindowEvent(std::shared_ptr<EventSystem::WindowEvent> eventData);
-		};
-	}
+		virtual void StartServices();
+		virtual void StopServices();
+
+		void SetupEventPrototypes();
+		void SetupEventHandlers();
+
+		virtual void OnWindowEvent(std::shared_ptr<EventSystem::WindowEvent> eventData);
+	};
 }

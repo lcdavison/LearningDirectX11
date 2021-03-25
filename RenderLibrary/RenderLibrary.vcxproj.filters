@@ -51,7 +51,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Include\DefaultGameplayUpdater.h">
+    <ClInclude Include="Include\Gameplay\DefaultGameplayUpdater.h">
       <Filter>Header Files\Gameplay</Filter>
     </ClInclude>
     <ClInclude Include="Include\ErrorHandler.h">
@@ -60,19 +60,13 @@
     <ClInclude Include="Include\Game.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Include\GameplayUpdater.h">
+    <ClInclude Include="Include\Gameplay\GameplayUpdater.h">
       <Filter>Header Files\Gameplay</Filter>
     </ClInclude>
     <ClInclude Include="Include\Module.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Rendering\DirectX11\Renderer.h">
-      <Filter>Header Files\Rendering\DirectX11</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Rendering\DirectX11\DepthStencilView.h">
-      <Filter>Header Files\Rendering\DirectX11</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Rendering\DirectX11\RenderTargetView.h">
+    <ClInclude Include="Include\Rendering\DirectX11\DX11Renderer.h">
       <Filter>Header Files\Rendering\DirectX11</Filter>
     </ClInclude>
     <ClInclude Include="Include\Rendering\BaseRenderer.h">
@@ -93,10 +87,10 @@
     <ClInclude Include="Include\Exceptions\Exception.h">
       <Filter>Header Files\Exception</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Rendering\DirectX11\Device.h">
+    <ClInclude Include="Include\Rendering\DirectX11\DX11Device.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Rendering\DirectX11\SwapChain.h">
+    <ClInclude Include="Include\Rendering\DirectX11\DX11SwapChain.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Include\Rendering\ShaderRepository.h">
@@ -138,9 +132,45 @@
     <ClInclude Include="Include\EventSystem\Events\Event.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Rendering\StaticMesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\VertexBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\Vertex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\ShaderType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\Drawable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\DirectX11\VertexShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\GraphicsContext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Application.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\SwapChain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\Device.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\Factories\SwapChainFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\Factories\DX11SwapChainFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\DefaultGameplayUpdater.cpp">
+    <ClCompile Include="Source\Gameplay\DefaultGameplayUpdater.cpp">
       <Filter>Source Files\Gameplay</Filter>
     </ClCompile>
     <ClCompile Include="Source\ErrorHandler.cpp">
@@ -149,13 +179,7 @@
     <ClCompile Include="Source\Game.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Rendering\DirectX11\Renderer.cpp">
-      <Filter>Source Files\Rendering\DirectX11</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Rendering\DirectX11\DepthStencilView.cpp">
-      <Filter>Source Files\Rendering\DirectX11</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Rendering\DirectX11\RenderTargetView.cpp">
+    <ClCompile Include="Source\Rendering\DirectX11\DX11Renderer.cpp">
       <Filter>Source Files\Rendering\DirectX11</Filter>
     </ClCompile>
     <ClCompile Include="Source\Window\Window.cpp">
@@ -173,10 +197,10 @@
     <ClCompile Include="Source\Rendering\DefaultRenderer.cpp">
       <Filter>Source Files\Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Rendering\DirectX11\Device.cpp">
+    <ClCompile Include="Source\Rendering\DirectX11\DX11Device.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Rendering\DirectX11\SwapChain.cpp">
+    <ClCompile Include="Source\Rendering\DirectX11\DX11SwapChain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Services\ServiceRepository.cpp">
@@ -192,6 +216,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\EventSystem\EventRegistry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\StaticMesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\ShaderRepository.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\Factories\DX11SwapChainFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\GraphicsContext.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

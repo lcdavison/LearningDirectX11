@@ -6,36 +6,33 @@
 
 #include <string>
 
-namespace RenderLibrary
+namespace RenderLibrary::System
 {
-	namespace Window
+	class Window : public Module
 	{
-		class Window : public Module
-		{
-			HWND windowHandle_;
-			HINSTANCE instance_;
-			std::wstring windowTitle_;
+		HWND windowHandle_;
+		HINSTANCE instance_;
+		std::wstring windowTitle_;
 
-			WindowCreator windowCreator_;
-			WindowUpdater windowUpdater_;
+		WindowCreator windowCreator_;
+		WindowUpdater windowUpdater_;
 
-		public:
-			Window(HINSTANCE instance);
-			Window(HINSTANCE instance, const std::wstring& windowTitle);
+	public:
+		Window(HINSTANCE instance);
+		Window(HINSTANCE instance, const std::wstring& windowTitle);
 
-			~Window();
+		~Window();
 
-			virtual void Start() override;
-			virtual void Stop() override;
+		virtual void Start() override;
+		virtual void Stop() override;
 
-			void Update();
+		void Update();
 
-			HWND GetWindowHandle() const;
+		HWND GetWindowHandle() const;
 
-		private:
-			void Create();
+	private:
+		void Create();
 
-			void MakeVisible() const;
-		};
-	}
+		void MakeVisible() const;
+	};
 }

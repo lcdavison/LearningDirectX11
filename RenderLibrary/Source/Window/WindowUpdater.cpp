@@ -1,25 +1,22 @@
 #include "Window/WindowUpdater.h"
 
-namespace RenderLibrary
+namespace RenderLibrary::System
 {
-	namespace Window
+	WindowUpdater::WindowUpdater()
 	{
-		WindowUpdater::WindowUpdater()
+	}
+
+	void WindowUpdater::Update(HWND windowHandle)
+	{
+		MSG message {};
+
+		while (PeekMessage(&message, NULL, 0, 0, PM_REMOVE))
 		{
-		}
+			if (message.message == WM_QUIT)
+				break;
 
-		void WindowUpdater::Update(HWND windowHandle)
-		{
-			MSG message {};
-
-			while (PeekMessage(&message, NULL, 0, 0, PM_REMOVE))
-			{
-				if (message.message == WM_QUIT)
-					break;
-
-				TranslateMessage(&message);
-				DispatchMessage(&message);
-			}
+			TranslateMessage(&message);
+			DispatchMessage(&message);
 		}
 	}
 }
