@@ -1,7 +1,7 @@
 #include "Game.h"
 
 #include "Rendering/DefaultRenderer.h"
-#include "DefaultGameplayUpdater.h"
+#include "Gameplay/DefaultGameplayUpdater.h"
 #include "Rendering/DirectX11/DX11Renderer.h"
 
 using namespace RenderLibrary::Services;

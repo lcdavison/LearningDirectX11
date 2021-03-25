@@ -5,7 +5,7 @@
 #include "Application.h"
 
 #include "Rendering/BaseRenderer.h"
-#include "GameplayUpdater.h"
+#include "Gameplay/GameplayUpdater.h"
 
 #include "EventSystem/EventRegistry.h"
 #include "EventSystem/Events/WindowEvent.h"

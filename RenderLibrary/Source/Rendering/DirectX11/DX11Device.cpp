@@ -23,6 +23,7 @@ namespace RenderLibrary::Rendering::DirectX11
 		}
 
 		swapChainFactory_ = std::make_unique<DX11SwapChainFactory>(deviceInterface_, contextInterface_);
+		bufferFactory_ = std::make_unique<DX11BufferFactory>(deviceInterface_, contextInterface_);
 	}
 
 	std::shared_ptr<Rendering::SwapChain> DX11Device::CreateSwapChain(std::shared_ptr<Window> window)
@@ -30,8 +31,8 @@ namespace RenderLibrary::Rendering::DirectX11
 		return swapChainFactory_->CreateSwapChain(window);
 	}
 
-	std::shared_ptr<Rendering::VertexBuffer> DX11Device::CreateVertexBuffer()
+	std::shared_ptr<Rendering::VertexBuffer> DX11Device::CreateVertexBuffer(const std::vector<Vertex>& vertices)
 	{
-		return nullptr;
+		return bufferFactory_->CreateVertexBuffer(vertices);
 	}
 }

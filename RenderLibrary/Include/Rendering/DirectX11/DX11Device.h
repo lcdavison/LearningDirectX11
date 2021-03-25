@@ -2,6 +2,7 @@
 
 #include "Rendering/Device.h"
 #include "Rendering/Factories/Dx11SwapChainFactory.h"
+#include "Rendering/Factories/DX11BufferFactory.h"
 #include "Window/Window.h"
 #include "ErrorHandler.h"
 
@@ -20,6 +21,6 @@ namespace RenderLibrary::Rendering::DirectX11
 
 		virtual std::shared_ptr<Rendering::SwapChain> CreateSwapChain(std::shared_ptr<System::Window> window) override;
 
-		virtual std::shared_ptr<Rendering::VertexBuffer> CreateVertexBuffer() override;
+		virtual std::shared_ptr<Rendering::VertexBuffer> CreateVertexBuffer(const std::vector<Vertex>& vertices) override;
 	};
 }

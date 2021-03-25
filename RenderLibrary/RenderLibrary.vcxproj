@@ -28,6 +28,9 @@
     <ClInclude Include="Include\EventSystem\Events\TestEvent.h" />
     <ClInclude Include="Include\EventSystem\Events\WindowEvent.h" />
     <ClInclude Include="Include\Rendering\Device.h" />
+    <ClInclude Include="Include\Rendering\DirectX11\DX11VertexBuffer.h" />
+    <ClInclude Include="Include\Rendering\Factories\BufferFactory.h" />
+    <ClInclude Include="Include\Rendering\Factories\DX11BufferFactory.h" />
     <ClInclude Include="Include\Rendering\VertexBuffer.h" />
     <ClInclude Include="Include\Rendering\Drawable.h" />
     <ClInclude Include="Include\Rendering\DirectX11\VertexShader.h" />
@@ -62,6 +65,8 @@
   <ItemGroup>
     <ClCompile Include="Source\Gameplay\DefaultGameplayUpdater.cpp" />
     <ClCompile Include="Source\EventSystem\EventRegistry.cpp" />
+    <ClCompile Include="Source\Rendering\DirectX11\DX11VertexBuffer.cpp" />
+    <ClCompile Include="Source\Rendering\Factories\DX11BufferFactory.cpp" />
     <ClCompile Include="Source\Rendering\Factories\DX11SwapChainFactory.cpp" />
     <ClCompile Include="Source\Rendering\GraphicsContext.cpp" />
     <ClCompile Include="Source\Rendering\StaticMesh.cpp" />

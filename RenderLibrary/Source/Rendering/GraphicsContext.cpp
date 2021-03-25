@@ -7,7 +7,7 @@ namespace RenderLibrary::Rendering
 		window_ {window}
 	{
 		swapChain_ = device_->CreateSwapChain(window_);
-		//swapChain_->Bind();
+		swapChain_->Bind();
 	}
 
 	void GraphicsContext::Draw()
